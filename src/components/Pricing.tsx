@@ -22,7 +22,7 @@ const includedFeatures = [
 
 const frequencies: { value: FrequencyValue; label: string; priceSuffix: string }[] = [
   { value: 'monthly', label: 'Monthly', priceSuffix: '/month' },
-  { value: 'annually', label: 'Annually', priceSuffix: '/year' },
+  { value: 'annually', label: 'Annually', priceSuffix: '/month, billed annually' },
 ]
 
 const tiers: {
@@ -72,7 +72,7 @@ const tiers: {
     name: 'Growth' as const,
     id: 'tier-growth',
     description: 'Get key community building features, all in one place.',
-    price: { monthly: '$99', annually: '$490' },
+    price: { monthly: '$99', annually: '$84' },
     href: 'https://withme.so/become-a-creator',
     secondary_headers: ['Everything in Starter, plus:'],
     firstGroup: [
@@ -88,7 +88,7 @@ const tiers: {
     name: 'Pro' as const,
     id: 'tier-pro',
     description: 'Pro your community with workflows and customizations',
-    price: { monthly: '$199', annually: '$990' },
+    price: { monthly: '$199', annually: '$169' },
     href: 'https://withme.so/become-a-creator',
     secondary_headers: ['Everything in Growth, plus:', 'Annual plan only:'],
     firstGroup: [
