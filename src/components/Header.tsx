@@ -62,7 +62,7 @@ function MobileNavigation() {
         className="relative z-10 flex h-8 w-8 items-center justify-center ui-not-focus-visible:outline-none"
         aria-label="Toggle Navigation"
       >
-        {({ open }) => <MobileNavIcon open={open} />}
+        {({ open }: { open: boolean }) => <MobileNavIcon open={open} />}
       </PopoverButton>
       <PopoverBackdrop
         transition
@@ -88,7 +88,7 @@ export function Header() {
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
-            <Link href="#" aria-label="Home">
+            <Link href="https://withme.so/become-a-creator" target="_blank" aria-label="Home">
               <Logo className="h-10 w-auto" />
             </Link>
             {/* <div className="hidden md:flex md:gap-x-6">
@@ -102,7 +102,9 @@ export function Header() {
               <NavLink href="/login">Sign in</NavLink>
             </div> */}
             <a 
-              href="/register" 
+              href="https://withme.so/become-a-creator" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#3C55F3] text-white shadow-sm hover:bg-[#3347d1] rounded-xl px-4 py-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3C55F3]"
             >
               <span>

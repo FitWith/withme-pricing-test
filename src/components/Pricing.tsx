@@ -42,7 +42,7 @@ const tiers: {
     id: 'tier-starter',
     description: 'Start a simple platform with all the core features listed.',
     price: { monthly: '$29', annually: '$25' },
-    href: '#',
+    href: 'https://withme.so/become-a-creator',
     secondary_headers: ['Core features:', 'Plus:'],
     firstGroup: [
       '50 Customers',
@@ -73,7 +73,7 @@ const tiers: {
     id: 'tier-growth',
     description: 'Get key community building features, all in one place.',
     price: { monthly: '$99', annually: '$490' },
-    href: '#',
+    href: 'https://withme.so/become-a-creator',
     secondary_headers: ['Everything in Starter, plus:'],
     firstGroup: [
       '500 Customers',
@@ -89,7 +89,7 @@ const tiers: {
     id: 'tier-pro',
     description: 'Pro your community with workflows and customizations',
     price: { monthly: '$199', annually: '$990' },
-    href: '#',
+    href: 'https://withme.so/become-a-creator',
     secondary_headers: ['Everything in Growth, plus:', 'Annual plan only:'],
     firstGroup: [
         '1000 Customers',
@@ -109,7 +109,7 @@ const tiers: {
     id: 'tier-enterprise',
     description: 'Run your business with full feature access and the highest limits',
     price: { monthly: '$399', annually: '$339' },
-    href: '#',
+    href: 'https://withme.so/become-a-creator',
     secondary_headers: ['Everything in Pro, plus:', 'Annual plan only:'],
     firstGroup: [
       'Unlimited Customers',
@@ -195,7 +195,7 @@ function classNames(...classes: string[]): string {
 function SuccessLaunch() {
   return (
     <div className="bg-white py-12 sm:py-12">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
         {/* <div className="mx-auto max-w-4xl sm:text-center">
           <h2 className="text-pretty text-5xl font-semibold tracking-tight text-gray-900 sm:text-balance sm:text-6xl">
             Simple no-tricks pricing
@@ -257,7 +257,7 @@ export default function Pricing() {
   const [frequency, setFrequency] = useState<{ value: FrequencyValue; label: string; priceSuffix: string }>(frequencies[0]);
 
   return (
-    <div className="bg-transparent py-24 sm:py-32">
+    <div className="bg-transparent py-12 sm:py-12">
       <div className="mx-auto max-w-4xl px-6 text-center lg:max-w-4xl lg:px-8">
         <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-950 sm:text-6xl lg:text-pretty">
           Choose the WithMe plan that&apos;s right for you.
@@ -287,7 +287,7 @@ export default function Pricing() {
         </fieldset>
       </div>
 
-      <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-24 xl:max-w-none xl:grid-cols-4">
+      <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-12 xl:max-w-none xl:grid-cols-4">
         {tiers.map((tier) => (
           <div
             key={tier.id}
@@ -314,6 +314,7 @@ export default function Pricing() {
             </p>
             <a
               href={tier.href}
+              target="_blank"
               aria-describedby={tier.id}
               className={classNames(
                 tier.mostPopular
@@ -455,6 +456,7 @@ export default function Pricing() {
               <TabPanel key={tier.name}>
                 <a
                   href={tier.href}
+                  target='_blank'
                   className="mt-8 block rounded-md bg-white px-3.5 py-2.5 text-center text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 >
                   Get started
