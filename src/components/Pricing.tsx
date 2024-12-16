@@ -20,16 +20,53 @@ const includedFeatures = [
   'Hands-on Marketing Support',
 ]
 
-const frequencies: { value: FrequencyValue; label: string; priceSuffix: string }[] = [
-  { value: 'monthly', label: 'Monthly', priceSuffix: '/month' },
-  { value: 'annually', label: 'Annually', priceSuffix: '/month, billed annually' },
+// Payment Links
+const STRIPE_BASE_URL = 'https://buy.stripe.com/'
+
+type ProductIds = {
+  implementation: string;
+  starter: { [K in FrequencyValue]: string };
+  growth: { [K in FrequencyValue]: string };
+  pro: { [K in FrequencyValue]: string };
+  enterprise: { [K in FrequencyValue]: string };
+};
+
+const PRODUCT_IDS: ProductIds = {
+  implementation: '3csaHc97LbQY84EaEM',
+  starter: {
+    monthly: '5kA6qWdo1aMU5Ww6oo',
+    annually: '00geXs3Nr7AI3Oo28h'
+  },
+  growth: {
+    monthly: 'cN29D86ZD08g0CceUV', 
+    annually: '5kAcPk4Rvf3a2KkdQS'
+  },
+  pro: {
+    monthly: 'cN2g1w1Fj3ks0CcdQT',
+    annually: '14k9D8cjX8EM0CcbIM'
+  },
+  enterprise: {
+    monthly: '3cscPk2Jn3ks1Gg6ot',
+    annually: 'cN24iO4Rv5sAbgQ9AG'
+  }
+}
+
+const getBuyLink = (productId: string | { [K in FrequencyValue]: string }, frequency?: FrequencyValue) => {
+  if (typeof productId === 'string') return `${STRIPE_BASE_URL}${productId}`;
+  return `${STRIPE_BASE_URL}${frequency ? productId[frequency] : ''}`;
+}
+
+
+const frequencies: { value: FrequencyValue; label: string; priceSuffix: string; saving: string }[] = [
+  { value: 'monthly', label: 'Monthly', priceSuffix: '/month', saving: '£0' },
+  { value: 'annually', label: 'Annually', priceSuffix: '/month, billed annually', saving: '£48' },
 ]
 
 const tiers: {
   name: TierName;
   id: string;
   description: string;
-  price: { monthly: string; annually: string };
+  price: { monthly: string; annually: string, saving: string };
   href: string;
   secondary_headers: string[];
   firstGroup?: string[];
@@ -41,8 +78,8 @@ const tiers: {
     name: 'Starter' as const,
     id: 'tier-starter',
     description: 'Start a simple platform with all the core features listed.',
-    price: { monthly: '$29', annually: '$25' },
-    href: 'https://withme.so/become-a-creator',
+    price: { monthly: '£29', annually: '£25', saving: '£48' },
+    href: 'https://withme.so/pricing-table',
     secondary_headers: ['Core features:', 'Plus:'],
     firstGroup: [
       '50 Customers',
@@ -72,8 +109,8 @@ const tiers: {
     name: 'Growth' as const,
     id: 'tier-growth',
     description: 'Get key community building features, all in one place.',
-    price: { monthly: '$99', annually: '$84' },
-    href: 'https://withme.so/become-a-creator',
+    price: { monthly: '£99', annually: '£84', saving: '£180' },
+    href: 'https://withme.so/pricing-table',
     secondary_headers: ['Everything in Starter, plus:'],
     firstGroup: [
       '500 Customers',
@@ -88,8 +125,8 @@ const tiers: {
     name: 'Pro' as const,
     id: 'tier-pro',
     description: 'Pro your community with workflows and customizations',
-    price: { monthly: '$199', annually: '$169' },
-    href: 'https://withme.so/become-a-creator',
+    price: { monthly: '£199', annually: '£169', saving: '£360' },
+    href: 'https://withme.so/pricing-table',
     secondary_headers: ['Everything in Growth, plus:', 'Annual plan only:'],
     firstGroup: [
         '1000 Customers',
@@ -108,8 +145,8 @@ const tiers: {
     name: 'Enterprise' as const,
     id: 'tier-enterprise',
     description: 'Run your business with full feature access and the highest limits',
-    price: { monthly: '$399', annually: '$339' },
-    href: 'https://withme.so/become-a-creator',
+    price: { monthly: '£399', annually: '£339', saving: '£720' },
+    href: 'https://withme.so/pricing-table',
     secondary_headers: ['Everything in Pro, plus:', 'Annual plan only:'],
     firstGroup: [
       'Unlimited Customers',
@@ -174,16 +211,6 @@ const sections: {
       { name: 'White-labeled community', tiers: { Starter: false, Growth: true, Pro: true, Enterprise: true } },
     ],
   },
-  {
-    name: 'Live Streams and Live Rooms',
-    features: [
-      { name: 'Live stream attendees', tiers: { Starter: false, Growth: '100', Pro: '200', Enterprise: '1,000' } },
-      { name: 'Live room participants', tiers: { Starter: false, Growth: '30', Pro: '40', Enterprise: '50' } },
-      { name: 'Hosts', tiers: { Starter: false, Growth: '30', Pro: '40', Enterprise: '50' } },
-      { name: 'Hours', tiers: { Starter: false, Growth: '20', Pro: '30', Enterprise: '40' } },
-      { name: 'Live recording storage', tiers: { Starter: false, Growth: '50 hours', Pro: '75 hours', Enterprise: '100 hours' } },
-    ],
-  },
 ]
 
 function classNames(...classes: string[]): string {
@@ -194,30 +221,19 @@ function classNames(...classes: string[]): string {
 
 function SuccessLaunch() {
   return (
-    <div className="bg-white py-12 sm:py-12">
+    <div className="bg-white py-12 sm:py-12 mb-12">
       <div className="mx-auto max-w-7xl">
-        {/* <div className="mx-auto max-w-4xl sm:text-center">
-          <h2 className="text-pretty text-5xl font-semibold tracking-tight text-gray-900 sm:text-balance sm:text-6xl">
-            Simple no-tricks pricing
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-            Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et quasi iusto modi velit ut non voluptas
-            in. Explicabo id ut laborum.
-          </p>
-        </div> */}
+
         <div className="mx-auto mt-16 max-w-7xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
           <div className="p-8 sm:p-10 lg:flex-auto">
             <h3 className="text-3xl font-semibold tracking-tight text-gray-900">Ensure your launch is successful</h3>
-            <p className="mt-6 text-base/7 text-gray-600">
-            Unify your audience and community with WithMe&apos;s Marketing Hub.
-            </p>
-            <div className="mt-10 flex items-center gap-x-4">
+            <div className="mt-8 flex items-center gap-x-4">
               <h4 className="flex-none text-sm/6 font-semibold text-[#3C55F3]">What&apos;s included</h4>
               <div className="h-px flex-auto bg-gray-100" />
             </div>
             <ul role="list" className="mt-8 grid grid-cols-1 gap-4 text-sm/6 text-gray-600 sm:grid-cols-2 sm:gap-6">
               {includedFeatures.map((feature) => (
-                <li key={feature} className="flex gap-x-3">
+                <li key={feature} className="flex gap-x-3 mt-4">
                   <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-[#3C55F3]" />
                   {feature}
                 </li>
@@ -225,21 +241,21 @@ function SuccessLaunch() {
             </ul>
           </div>
           <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:shrink-0">
-            <div className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
+            <div className="rounded-2xl bg-gray-50 py-4 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-8">
               <div className="mx-auto max-w-xs px-8">
                 <p className="text-base font-semibold text-gray-600">Implementation Specialist</p>
                 <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                  <span className="text-5xl font-semibold tracking-tight text-gray-900">$1000</span>
-                  <span className="text-sm/6 font-semibold tracking-wide text-gray-600">USD</span>
+                  <span className="text-5xl font-semibold tracking-tight text-gray-900">£1000</span>
+                  <span className="text-sm/6 font-semibold tracking-wide text-gray-600">GBP</span>
                 </p>
                 <a
-                  href="https://withme.so/become-a-creator" target='_blank'
+                  href={getBuyLink(PRODUCT_IDS.implementation)} target='_blank'
                   className="mt-10 block w-full rounded-md bg-[#3C55F3] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#3347d1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3C55F3]"
                 >
                   Get started
                 </a>
                 <p className="mt-6 text-xs/5 text-gray-600">
-                  Invoices and receipts available for easy company reimbursement
+                  Invoices and receipts available for easy company reimbursement 
                 </p>
               </div>
             </div>
@@ -254,7 +270,7 @@ function SuccessLaunch() {
 
 
 export default function Pricing() {
-  const [frequency, setFrequency] = useState<{ value: FrequencyValue; label: string; priceSuffix: string }>(frequencies[0]);
+  const [frequency, setFrequency] = useState<{ value: FrequencyValue; label: string; priceSuffix: string , saving: string }>(frequencies[0]);
 
   return (
     <div className="bg-transparent py-12 sm:py-12">
@@ -306,14 +322,22 @@ export default function Pricing() {
               {tier.name}
             </h3>
             <p className="mt-4 text-sm/6 text-gray-600">{tier.description}</p>
-            <p className="mt-6 flex items-baseline gap-x-1">
-              <span className="text-4xl font-semibold tracking-tight text-gray-900">
-                {tier.price[frequency.value]}
+            <p className="mt-6 flex flex-col">
+              <span className="flex items-baseline gap-x-1">
+                <span className="text-4xl font-semibold tracking-tight text-gray-900">
+                  {tier.price[frequency.value]}
+                </span>
+                <span className="text-sm/6 font-semibold text-gray-600">{frequency.priceSuffix}</span>
               </span>
-              <span className="text-sm/6 font-semibold text-gray-600">{frequency.priceSuffix}</span>
+              {
+                frequency.value === 'annually' ?
+                  <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">Saving {tier.price.saving}</span>
+                : 
+                <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">&nbsp;</span>
+              }
             </p>
             <a
-              href={tier.href}
+              href={getBuyLink(PRODUCT_IDS[tier.name.toLowerCase() as keyof typeof PRODUCT_IDS], frequency.value)}
               target="_blank"
               aria-describedby={tier.id}
               className={classNames(
@@ -323,7 +347,7 @@ export default function Pricing() {
                 'mt-6 block rounded-md px-3 py-2 text-center text-sm/6 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3C55F3]',
               )}
             >
-              Start free trial
+              Upgrade
             </a>
             <ul role="list" className="mt-8 space-y-3 text-sm/6 text-gray-600">
               {tier.secondary_headers[0] && (

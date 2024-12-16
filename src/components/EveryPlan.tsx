@@ -46,7 +46,7 @@ const features = [
   },
 ]
 
-export default function EveryPlan() {
+export default function EveryPlan({ scrollToTop }: { scrollToTop: () => void }) {
   return (
     <div className="bg-white py-12 sm:py-12 mb-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -68,8 +68,7 @@ export default function EveryPlan() {
                 </dt>
                 <dd className="mt-2 text-sm/6 text-gray-600">{feature.description}</dd>
                 <a 
-                  href="https://withme.so" 
-                  target="_blank"
+                  onClick={scrollToTop}
                   className="group mt-4 inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
                 >
                   {feature.cta}

@@ -2,34 +2,33 @@ import Image from 'next/image'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import backgroundImage from '@/images/background-call-to-action.jpg'
+import BackgroundImage from '@/images/Background.webp'
 
-export function CallToAction() {
+export function CallToAction({ scrollToTop }: { scrollToTop: () => void }) {
   return (
     <section
       id="get-started-today"
-      className="relative overflow-hidden bg-blue-600 py-32"
+      className="relative overflow-hidden py-32 mb-24 font-roboto"
     >
       <Image
-        className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
-        src={backgroundImage}
+        className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2 rotate-180"
+        src={BackgroundImage}
         alt=""
-        width={2347}
-        height={1244}
-        unoptimized
       />
       <Container className="relative">
-        <div className="mx-auto max-w-lg text-center">
-          <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
-            Get started today
-          </h2>
-          <p className="mt-4 text-lg tracking-tight text-white">
-            It’s time to take control of your books. Buy our software so you can
-            feel like you’re doing something productive.
+        <div className="mx-auto max-w-3xl mt-6 text-center">
+        <p className="mt-12 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-balance">
+          Ready to upgrade?
           </p>
-          <Button href="/register" color="white" className="mt-10">
-            Get 6 months free
-          </Button>
+        <p className="mt-6 mx-auto max-w-4xl text-pretty text-lg text-[#6E89AF] sm:text-xl/8">
+          WithMe is the partner for growth to the world&apos;s best creators and experts. With flexible pricing options that only come into play after you start making money, we&apos;re here to help you succeed.
+        </p>
+          <a
+            onClick={scrollToTop}
+            className="mt-10 inline-block rounded-lg px-4 py-2.5 text-sm font-semibold text-white bg-[#4159F2] hover:bg-[#3347d1] transition-colors duration-200"
+          >
+            Upgrade today
+          </a>
         </div>
       </Container>
     </section>
