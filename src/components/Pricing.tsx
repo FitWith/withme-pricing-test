@@ -56,10 +56,22 @@ const getBuyLink = (productId: string | { [K in FrequencyValue]: string }, frequ
   return `${STRIPE_BASE_URL}${frequency ? productId[frequency] : ''}`;
 }
 
+const getCurrencySymbol = () => {
+  if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
+    const locale = navigator.language;
+    console.log("🚀 ~ getCurrencySymbol ~ locale:", locale)
+    if (locale.startsWith('en-US')) {
+      return '$';
+    } else if (locale.startsWith('en-GB')) {
+      return '£';
+    }
+  }
+  return '$'; // Default to USD if locale is not US or UK
+};
 
 const frequencies: { value: FrequencyValue; label: string; priceSuffix: string; saving: string }[] = [
-  { value: 'monthly', label: 'Monthly', priceSuffix: '/month', saving: '£0' },
-  { value: 'annually', label: 'Annually', priceSuffix: '/month, billed annually', saving: '£48' },
+  { value: 'monthly', label: 'Monthly', priceSuffix: '/month', saving: '0' },
+  { value: 'annually', label: 'Annually', priceSuffix: '/month, billed annually', saving: '48' },
 ]
 
 const tiers: {
@@ -78,7 +90,7 @@ const tiers: {
     name: 'Starter' as const,
     id: 'tier-starter',
     description: 'Start a simple platform with all the core features listed.',
-    price: { monthly: '£29', annually: '£25', saving: '£48' },
+    price: { monthly: '29', annually: '25', saving: '48' },
     href: 'https://withme.so/pricing-table',
     secondary_headers: ['Core features:', 'Plus:'],
     firstGroup: [
@@ -109,7 +121,7 @@ const tiers: {
     name: 'Growth' as const,
     id: 'tier-growth',
     description: 'Get key community building features, all in one place.',
-    price: { monthly: '£99', annually: '£84', saving: '£180' },
+    price: { monthly: '99', annually: '84', saving: '180' },
     href: 'https://withme.so/pricing-table',
     secondary_headers: ['Everything in Starter, plus:'],
     firstGroup: [
@@ -125,7 +137,7 @@ const tiers: {
     name: 'Pro' as const,
     id: 'tier-pro',
     description: 'Pro your community with workflows and customizations',
-    price: { monthly: '£199', annually: '£169', saving: '£360' },
+    price: { monthly: '199', annually: '169', saving: '360' },
     href: 'https://withme.so/pricing-table',
     secondary_headers: ['Everything in Growth, plus:', 'Annual plan only:'],
     firstGroup: [
@@ -145,7 +157,7 @@ const tiers: {
     name: 'Enterprise' as const,
     id: 'tier-enterprise',
     description: 'Run your business with full feature access and the highest limits',
-    price: { monthly: '£399', annually: '£339', saving: '£720' },
+    price: { monthly: '399', annually: '339', saving: '720' },
     href: 'https://withme.so/pricing-table',
     secondary_headers: ['Everything in Pro, plus:', 'Annual plan only:'],
     firstGroup: [
@@ -220,6 +232,7 @@ function classNames(...classes: string[]): string {
 
 
 function SuccessLaunch() {
+  const currencySymbol = getCurrencySymbol();
   return (
     <div className="bg-white py-12 sm:py-12 mb-12">
       <div className="mx-auto max-w-7xl">
@@ -245,8 +258,8 @@ function SuccessLaunch() {
               <div className="mx-auto max-w-xs px-8">
                 <p className="text-base font-semibold text-gray-600">Implementation Specialist</p>
                 <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                  <span className="text-5xl font-semibold tracking-tight text-gray-900">£1000</span>
-                  <span className="text-sm/6 font-semibold tracking-wide text-gray-600">GBP</span>
+                  <span className="text-5xl font-semibold tracking-tight text-gray-900">{currencySymbol}1000</span>
+                  <span className="text-sm/6 font-semibold tracking-wide text-gray-600">{currencySymbol === '£' ? 'GBP' : 'USD'}</span>
                 </p>
                 <a
                   href={getBuyLink(PRODUCT_IDS.implementation)} target='_blank'
@@ -270,6 +283,7 @@ function SuccessLaunch() {
 
 
 export default function Pricing() {
+  const currencySymbol = getCurrencySymbol();
   const [frequency, setFrequency] = useState<{ value: FrequencyValue; label: string; priceSuffix: string , saving: string }>(frequencies[0]);
 
   return (
@@ -325,13 +339,13 @@ export default function Pricing() {
             <p className="mt-6 flex flex-col">
               <span className="flex items-baseline gap-x-1">
                 <span className="text-4xl font-semibold tracking-tight text-gray-900">
-                  {tier.price[frequency.value]}
+                  {currencySymbol}{tier.price[frequency.value]}
                 </span>
                 <span className="text-sm/6 font-semibold text-gray-600">{frequency.priceSuffix}</span>
               </span>
               {
                 frequency.value === 'annually' ?
-                  <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">Saving {tier.price.saving}</span>
+                  <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">Saving {currencySymbol}{tier.price.saving}</span>
                 : 
                 <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">&nbsp;</span>
               }
