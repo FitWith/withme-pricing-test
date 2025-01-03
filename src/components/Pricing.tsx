@@ -59,7 +59,6 @@ const getBuyLink = (productId: string | { [K in FrequencyValue]: string }, frequ
 const getCurrencySymbol = () => {
   if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
     const locale = navigator.language;
-    console.log("🚀 ~ getCurrencySymbol ~ locale:", locale)
     if (locale.startsWith('en-US')) {
       return '$';
     } else if (locale.startsWith('en-GB')) {
