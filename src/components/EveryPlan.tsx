@@ -3,11 +3,11 @@ import { ArrowRightIcon } from '@heroicons/react/20/solid'
 
 const features = [
   {
-    name: 'Sell memberships',
+    name: 'Sell subscriptions',
     description:
       'Create recurring revenue with flexible membership tiers and custom benefits.',
     icon: BanknotesIcon,
-    cta: 'Start selling memberships'
+    cta: 'Start selling subscriptions'
   },
   {
     name: 'Sell courses',
