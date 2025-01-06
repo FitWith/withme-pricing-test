@@ -25,7 +25,7 @@ export function CallToAction({ scrollToTop }: { scrollToTop: () => void }) {
         </p>
           <a
             onClick={scrollToTop}
-            className="mt-10 inline-block rounded-lg px-4 py-2.5 text-sm font-semibold text-white bg-[#4159F2] hover:bg-[#3347d1] transition-colors duration-200"
+            className="mt-10 inline-block rounded-lg px-4 py-2.5 text-sm font-semibold text-white bg-[#4159F2] hover:bg-[#3347d1] transition-colors duration-200 cursor-pointer"
           >
             Upgrade today
           </a>
