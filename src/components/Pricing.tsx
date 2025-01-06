@@ -188,16 +188,13 @@ const sections: {
       { name: 'Customers', tiers: { Starter: '50', Growth: '500', Pro: '1000', Enterprise: 'Unlimited' } },
       { name: 'Admins', tiers: { Starter: '1', Growth: '3', Pro: '5', Enterprise: '10' } },
       { name: 'Moderators', tiers: { Starter: '1', Growth: '10', Pro: '15', Enterprise: '100' } },
-      { name: 'Spaces', tiers: { Starter: '10', Growth: '20', Pro: '30', Enterprise: '100' } },
       { name: 'Transaction fees', tiers: { Starter: '4%', Growth: '2%', Pro: '1%', Enterprise: '0.5%' } },
       { name: 'Content storage', tiers: { Starter: '10GB', Growth: '100GB', Pro: '250GB', Enterprise: '1TB' } },
-      { name: 'Admin API requests', tiers: { Starter: false, Growth: false, Pro: '5,000/mo', Enterprise: '30,000/mo' } },
     ],
   },
   {
     name: 'Features',
     features: [
-      { name: 'Private spaces', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'Bulk import/export', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'In-app notifications', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'Basic moderation', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },

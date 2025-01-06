@@ -28,21 +28,21 @@ const features = [
     description:
       'Build exclusive spaces for discussions and networking with premium access.',
     icon: UserGroupIcon,
-    cta: 'Start selling digital content'
+    cta: 'Start your premium community'
   },
   {
     name: 'Tipping',
     description:
       'Let supporters show appreciation through voluntary contributions.',
     icon: HandThumbUpIcon,
-    cta: 'Start selling digital content'
+    cta: 'Start your WithMe platform'
   },
   {
     name: 'Instant Payouts',
     description:
       'Access your earnings immediately without waiting periods.',
     icon: CurrencyDollarIcon,
-    cta: 'Start selling digital content'
+    cta: 'Start your WithMe platform'
   },
 ]
 

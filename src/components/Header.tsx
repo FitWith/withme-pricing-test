@@ -97,10 +97,10 @@ export function Header() {
               <NavLink href="#pricing">Pricing</NavLink>
             </div> */}
           </div>
-          <div className="flex items-center gap-x-5 md:gap-x-8">
-            {/* <div className="hidden md:block">
+          {/* <div className="flex items-center gap-x-5 md:gap-x-8">
+            <div className="hidden md:block">
               <NavLink href="/login">Sign in</NavLink>
-            </div> */}
+            </div>
             <a 
               href="https://withme.so/become-a-creator" 
               target="_blank"
@@ -111,10 +111,10 @@ export function Header() {
                 Upgrade
               </span>
             </a>
-            {/* <div className="-mr-1 md:hidden">
+            <div className="-mr-1 md:hidden">
               <MobileNavigation />
-            </div> */}
-          </div>
+            </div>
+          </div> */}
         </nav>
       </Container>
     </header>
