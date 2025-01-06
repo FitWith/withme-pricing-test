@@ -334,7 +334,7 @@ export default function Pricing() {
             >
               {tier.name}
             </h3>
-            <p className="mt-4 text-sm/6 text-gray-600">{tier.description}</p>
+            <p className="mt-4 min-h-12 text-sm/6 text-gray-600">{tier.description}</p>
             <p className="mt-6 flex flex-col">
               <span className="flex items-baseline gap-x-1">
                 <span className="text-4xl font-semibold tracking-tight text-gray-900">

@@ -108,7 +108,7 @@ export function Header() {
               className="bg-[#3C55F3] text-white shadow-sm hover:bg-[#3347d1] rounded-xl px-4 py-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3C55F3]"
             >
               <span>
-                Get started <span className="hidden lg:inline">today</span>
+                Upgrade
               </span>
             </a>
             {/* <div className="-mr-1 md:hidden">
