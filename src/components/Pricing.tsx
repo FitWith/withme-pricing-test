@@ -192,9 +192,6 @@ const sections: {
       { name: 'Transaction fees', tiers: { Starter: '4%', Growth: '2%', Pro: '1%', Enterprise: '0.5%' } },
       { name: 'Content storage', tiers: { Starter: '10GB', Growth: '100GB', Pro: '250GB', Enterprise: '1TB' } },
       { name: 'Admin API requests', tiers: { Starter: false, Growth: false, Pro: '5,000/mo', Enterprise: '30,000/mo' } },
-      { name: 'Subscriptions', tiers: { Starter: '1', Growth: '2', Pro: '3', Enterprise: '3' } },
-      { name: 'Single digital content sales', tiers: { Starter: '3', Growth: '5', Pro: 'Unlimited', Enterprise: 'Unlimited' } },
-      { name: 'Courses', tiers: { Starter: false, Growth: '2', Pro: 'Unlimited', Enterprise: 'Unlimited' } },
     ],
   },
   {
@@ -203,10 +200,7 @@ const sections: {
       { name: 'Private spaces', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'Bulk import/export', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'In-app notifications', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Member profiles & directory', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'Basic moderation', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Direct messaging', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Group chat', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'Weekly email digest', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'Events', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'GDPR compliant', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
@@ -214,11 +208,7 @@ const sections: {
       { name: 'Chat spaces', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'Scheduled posts', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'Advanced reporting', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Gamification', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
       { name: 'Custom domain', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Custom CSS/Javascript', tiers: { Starter: false, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Zapier integration', tiers: { Starter: false, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Embed widgets', tiers: { Starter: false, Growth: true, Pro: true, Enterprise: true } },
       { name: 'White-labeled community', tiers: { Starter: false, Growth: true, Pro: true, Enterprise: true } },
     ],
   },
@@ -266,9 +256,6 @@ function SuccessLaunch() {
                 >
                   Get started
                 </a>
-                <p className="mt-6 text-xs/5 text-gray-600">
-                  Invoices and receipts available for easy company reimbursement 
-                </p>
               </div>
             </div>
           </div>
@@ -292,7 +279,7 @@ export default function Pricing() {
           Choose the WithMe plan that&apos;s right for you.
         </h1>
         <p className="mt-6 mx-auto max-w-4xl text-pretty text-lg text-[#6E89AF] sm:text-xl/8">
-          WithMe is the partner for growth to the world&apos;s best creators and experts. With flexible pricing options that only come into play after you start making money, we&apos;re here to help you succeed.
+          WithMe is the partner for growth to the world&apos;s best creators and experts. With flexible pricing options, we&apos;re here to help you succeed.
         </p>
       </div>
 
@@ -394,7 +381,7 @@ export default function Pricing() {
             Compare plans and Features
           </h1>
           <p className="mt-6 mx-auto max-w-4xl text-pretty text-md text-[#6E89AF] sm:text-xl/8">
-            WithMe is the partner for growth to the world&apos;s best creators and experts. With flexible pricing options that only come into play after you start making money, we&apos;re here to help you succeed.
+            WithMe is the partner for growth to the world&apos;s best creators and experts. With flexible pricing options, we&apos;re here to help you succeed.
           </p>
         </div>
 

@@ -21,7 +21,7 @@ export function CallToAction({ scrollToTop }: { scrollToTop: () => void }) {
           Ready to upgrade?
           </p>
         <p className="mt-6 mx-auto max-w-4xl text-pretty text-lg text-[#6E89AF] sm:text-xl/8">
-          WithMe is the partner for growth to the world&apos;s best creators and experts. With flexible pricing options that only come into play after you start making money, we&apos;re here to help you succeed.
+          WithMe is the partner for growth to the world&apos;s best creators and experts. With flexible pricing options, we&apos;re here to help you succeed.
         </p>
           <a
             onClick={scrollToTop}
