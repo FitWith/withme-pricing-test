@@ -4,6 +4,7 @@ import { Fragment, useState } from 'react'
 import { CheckIcon, MinusIcon } from '@heroicons/react/16/solid'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import { Radio, RadioGroup } from '@headlessui/react'
+import ToolTip from './ToolTip'
 
 type FrequencyValue = 'monthly' | 'annually';
 
@@ -81,6 +82,7 @@ const tiers: {
   href: string;
   secondary_headers: string[];
   firstGroup?: string[];
+  info?: string[];
   secondGroup?: string[];
   mostPopular: boolean;
   features?: string[];
@@ -93,8 +95,8 @@ const tiers: {
     href: 'https://withme.so/pricing-table',
     secondary_headers: ['Core features:', 'Plus:'],
     firstGroup: [
-      '50 Customers',
-      'Subscriptions',
+      'Unlimited Customers',
+      '50 Subscriptions',
       'Courses',
       'One-off digital content sales',
       'Paid or free community',
@@ -103,6 +105,9 @@ const tiers: {
       'Instant payouts', 
       'Insights',
       'Automatic notifications for members'
+    ],
+    info: [
+      'Anyone who buys a product with a single payment. Ie a course, or digital download'
     ],
     secondGroup: [
       'Video',
@@ -124,11 +129,15 @@ const tiers: {
     href: 'https://withme.so/pricing-table',
     secondary_headers: ['Everything in Starter, plus:'],
     firstGroup: [
-      '500 Customers',
+      'Unlimited Customers',
+      '500 Subscriptions',
       'Paid memberships',
       'Weekly community digest',
       'Custom branding',
       'Viral link'
+    ],
+    info: [
+      'Anyone who buys a product with a single payment. Ie a course, or digital download'
     ],
     mostPopular: true,
   },
@@ -140,10 +149,14 @@ const tiers: {
     href: 'https://withme.so/pricing-table',
     secondary_headers: ['Everything in Growth, plus:', 'Annual plan only:'],
     firstGroup: [
-        '1000 Customers',
+        'Unlimited Customers',
+        '1000 Subscriptions',
         '1:1 Async Coaching module',
         'Notifications',
         'Member affiliate programme'
+    ],
+    info: [
+      'Anyone who buys a product with a single payment. Ie a course, or digital download'
     ],
     secondGroup: [
       'Quarterly business reviews',
@@ -161,12 +174,16 @@ const tiers: {
     secondary_headers: ['Everything in Pro, plus:', 'Annual plan only:'],
     firstGroup: [
       'Unlimited Customers',
+      'Unlimited Subscriptions',
       'Unlimited Storage', 
       'Custom single sign-on (SSO)',
       'Priority support',
       'Advanced analytics',
       'Lower transaction fees',
       'Custom email branding'
+    ],
+    info: [
+      'Anyone who buys a product with a single payment. Ie a course, or digital download'
     ],
     secondGroup: [
       'Concierge onboarding',
@@ -180,12 +197,13 @@ const tiers: {
 
 const sections: {
   name: string;
-  features: { name: string; tiers: FeatureTiers }[];
+  features: { name: string; tiers: FeatureTiers, info?: string }[];
 }[] = [
   {
     name: 'Products',
     features: [
-      { name: 'Customers', tiers: { Starter: '50', Growth: '500', Pro: '1000', Enterprise: 'Unlimited' } },
+      { name: 'Customers', tiers: { Starter: 'Unlimited', Growth: 'Unlimited', Pro: 'Unlimited', Enterprise: 'Unlimited' }, info: 'Anyone who buys a product with a single payment. Ie a course, or digital download.' },
+      { name: 'Subscriptions', tiers: { Starter: '50', Growth: '500', Pro: '1000', Enterprise: 'Unlimited' } },
       { name: 'Admins', tiers: { Starter: '1', Growth: '3', Pro: '5', Enterprise: '10' } },
       { name: 'Moderators', tiers: { Starter: '1', Growth: '10', Pro: '15', Enterprise: '100' } },
       { name: 'Transaction fees', tiers: { Starter: '4%', Growth: '2%', Pro: '1%', Enterprise: '0.5%' } },
@@ -305,10 +323,17 @@ export default function Pricing() {
           <div
             key={tier.id}
             className={classNames(
-              tier.mostPopular ? 'ring-2 ring-[#3C55F3]' : 'ring-1 ring-gray-200',
+              tier.mostPopular ? 'ring-2 ring-[#3C55F3] relative' : 'ring-1 ring-gray-200',
               'rounded-3xl p-8', 'bg-white'
             )}
           >
+            {
+              tier.mostPopular && (
+                <span className="absolute top-0 right-1/2 translate-x-1/2 bg-[#3C55F3] text-white text-xs/5 font-semibold px-4 py-1 rounded-b-lg">
+                  Recommended
+                </span>
+              )
+            }
             <h3
               id={tier.id}
               className={classNames(
@@ -350,10 +375,16 @@ export default function Pricing() {
               {tier.secondary_headers[0] && (
                 <li className="font-semibold text-gray-900">{tier.secondary_headers[0]}</li>
               )}
-              {tier.firstGroup?.map((feature) => (
-                <li key={feature} className="flex gap-x-3">
+              {tier.firstGroup?.map((feature, index) => (
+                <li key={feature} className="flex gap-x-3 items-center">
                   <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-[#3C55F3]" />
                   {feature}
+                  {tier.info && tier.info[index] && 
+                    <ToolTip
+                      text={tier.info[index]}
+                      hover
+                    />
+                  }
                 </li>
               ))}
               {tier.secondary_headers[1] && (
@@ -428,8 +459,14 @@ export default function Pricing() {
               </tr>
               {section.features.map((feature) => (
                 <tr key={feature.name} className="border-b border-gray-100 last:border-none">
-                  <th scope="row" className="px-0 py-4 text-sm/6 font-normal text-gray-600">
+                  <th scope="row" className="px-0 py-4 text-sm/6 font-normal text-gray-600 flex items-center gap-2">
                     {feature.name}
+                    {feature.info &&
+                      <ToolTip
+                        text={feature.info}
+                        hover
+                      />
+                    }
                   </th>
                   {tiers.map((tier) => (
                     <td key={tier.name} className="p-4 max-sm:text-center">
@@ -493,7 +530,15 @@ export default function Pricing() {
                           key={feature.name}
                           className="grid grid-cols-2 border-b border-gray-100 py-4 last:border-none"
                         >
-                          <dt className="text-sm/6 font-normal text-gray-600">{feature.name}</dt>
+                          <dt className="text-sm/6 font-normal text-gray-600 flex gap-2 items-center">
+                            {feature.name}
+                            {feature.info &&
+                              <ToolTip
+                                text={feature.info}
+                                hover
+                              />
+                            }
+                          </dt>
                           <dd className="text-center">
                             {typeof feature.tiers[tier.name] === 'string' ? (
                               <span className="text-sm/6 text-gray-950">{feature.tiers[tier.name]}</span>
