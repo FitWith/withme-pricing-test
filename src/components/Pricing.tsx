@@ -90,7 +90,7 @@ const tiers: {
   {
     name: 'Starter' as const,
     id: 'tier-starter',
-    description: 'Start a simple platform with all the core features listed.',
+    description: 'Everything you need to start your online business',
     price: { monthly: '29', annually: '25', saving: '48' },
     href: 'https://withme.so/pricing-table',
     secondary_headers: ['Core features:', 'Plus:'],
@@ -124,7 +124,7 @@ const tiers: {
   {
     name: 'Growth' as const,
     id: 'tier-growth',
-    description: 'Get key community building features, all in one place.',
+    description: 'Get key community building features, all in one place',
     price: { monthly: '99', annually: '84', saving: '180' },
     href: 'https://withme.so/pricing-table',
     secondary_headers: ['Everything in Starter, plus:'],
@@ -144,7 +144,7 @@ const tiers: {
   {
     name: 'Pro' as const,
     id: 'tier-pro',
-    description: 'Pro your community with workflows and customizations',
+    description: 'All the features and support you need to scale and start 1:1 coaching',
     price: { monthly: '199', annually: '169', saving: '360' },
     href: 'https://withme.so/pricing-table',
     secondary_headers: ['Everything in Growth, plus:', 'Annual plan only:'],
@@ -168,7 +168,7 @@ const tiers: {
   {
     name: 'Enterprise' as const,
     id: 'tier-enterprise',
-    description: 'Run your business with full feature access and the highest limits',
+    description: 'For those creators or brands who want more control and infinite growth',
     price: { monthly: '399', annually: '339', saving: '720' },
     href: 'https://withme.so/pricing-table',
     secondary_headers: ['Everything in Pro, plus:', 'Annual plan only:'],
