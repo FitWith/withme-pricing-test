@@ -97,6 +97,7 @@ const tiers: {
     firstGroup: [
       'Unlimited Customers',
       '50 Subscriptions',
+      'Unlimited 1:1 zoom support ',
       'Courses',
       'One-off digital content sales',
       'Paid or free community',
@@ -294,7 +295,7 @@ export default function Pricing() {
           Choose the WithMe plan that&apos;s right for you.
         </h1>
         <p className="mt-6 mx-auto max-w-4xl text-pretty text-lg text-[#6E89AF] sm:text-xl/8">
-          WithMe is the partner for growth to the world&apos;s best creators and experts. With flexible pricing options, we&apos;re here to help you succeed.
+          WithMe is the partner for growth to the world&apos;s best creators and experts. <br />No obligations, no contracts, cancel at any time.
         </p>
       </div>
 
@@ -330,7 +331,7 @@ export default function Pricing() {
             {
               tier.mostPopular && (
                 <span className="absolute top-0 right-1/2 translate-x-1/2 bg-[#3C55F3] text-white text-xs/5 font-semibold px-4 py-1 rounded-b-lg">
-                  Recommended
+                  Most Popular
                 </span>
               )
             }
