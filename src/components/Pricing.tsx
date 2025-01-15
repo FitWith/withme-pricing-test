@@ -286,7 +286,7 @@ function SuccessLaunch() {
 
 export default function Pricing() {
   const currencySymbol = getCurrencySymbol();
-  const [frequency, setFrequency] = useState<{ value: FrequencyValue; label: string; priceSuffix: string , saving: string }>(frequencies[1]);
+  const [frequency, setFrequency] = useState<{ value: FrequencyValue; label: string; priceSuffix: string , saving: string }>(frequencies[0]);
 
   return (
     <div className="bg-transparent py-12 sm:py-12">
