@@ -204,7 +204,7 @@ const sections: {
         { name: 'Admins', tiers: { Starter: '1', Growth: '3', Pro: '5', Enterprise: '10' } },
         { name: 'Moderators', tiers: { Starter: '1', Growth: '10', Pro: '15', Enterprise: '100' } },
         { name: 'Transaction fees', tiers: { Starter: '4%', Growth: '2%', Pro: '1%', Enterprise: '0.5%' } },
-        { name: 'Content storage', tiers: { Starter: '10GB', Growth: '100GB', Pro: '250GB', Enterprise: '1TB' }, info: 'Example - XX videos, \nXXX PDF\'s, \nUnlimited Youtube embeds' },
+        { name: 'Content storage', tiers: { Starter: '10GB', Growth: '100GB', Pro: '250GB', Enterprise: '1TB' }},
       ],
     },
     // {
