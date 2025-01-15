@@ -1,7 +1,7 @@
 'use client'
 
 import { Fragment, useState } from 'react'
-import { CheckIcon, MinusIcon } from '@heroicons/react/16/solid'
+import { CheckIcon, MinusIcon, ChevronDownIcon } from '@heroicons/react/16/solid'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import { Radio, RadioGroup } from '@headlessui/react'
 import ToolTip from './ToolTip'
@@ -16,7 +16,7 @@ type FeatureTiers = {
 
 const includedFeatures = [
   '4 X 1:1 sessions over 12 weeks',
-  'Custom Launch Plan', 
+  'Custom Launch Plan',
   'Expert Advice from Established CEOs',
   'Hands-on Marketing Support',
 ]
@@ -39,7 +39,7 @@ const PRODUCT_IDS: ProductIds = {
     annually: '00geXs3Nr7AI3Oo28h'
   },
   growth: {
-    monthly: 'cN29D86ZD08g0CceUV', 
+    monthly: 'cN29D86ZD08g0CceUV',
     annually: '5kAcPk4Rvf3a2KkdQS'
   },
   pro: {
@@ -87,148 +87,144 @@ const tiers: {
   mostPopular: boolean;
   features?: string[];
 }[] = [
-  {
-    name: 'Starter' as const,
-    id: 'tier-starter',
-    description: 'Everything you need to start your online business',
-    price: { monthly: '29', annually: '25', saving: '48' },
-    href: 'https://withme.so/pricing-table',
-    secondary_headers: ['Core features:', 'Plus:'],
-    firstGroup: [
-      'Unlimited Customers',
-      '50 Subscriptions',
-      'Unlimited 1:1 zoom support ',
-      'Courses',
-      'One-off digital content sales',
-      'Paid or free community',
-      'Paid or free messaging',
-      'Tipping',
-      'Instant payouts', 
-      'Insights',
-      'Automatic notifications for members'
-    ],
-    info: [
-      'Anyone who buys a product with a single payment. Ie a course, or digital download'
-    ],
-    secondGroup: [
-      'Video',
-      'Youtube/loom embed',
-      'PDF upload',
-      'Live streams',
-      '20 image carousels',
-      'Audio upload',
-      'Promotional codes',
-      'Notifications'
-    ],
-    mostPopular: false,
-  },
-  {
-    name: 'Growth' as const,
-    id: 'tier-growth',
-    description: 'Get key community building features, all in one place',
-    price: { monthly: '99', annually: '84', saving: '180' },
-    href: 'https://withme.so/pricing-table',
-    secondary_headers: ['Everything in Starter, plus:'],
-    firstGroup: [
-      'Unlimited Customers',
-      '500 Subscriptions',
-      'Paid memberships',
-      'Weekly community digest',
-      'Custom branding',
-      'Viral link'
-    ],
-    info: [
-      'Anyone who buys a product with a single payment. Ie a course, or digital download'
-    ],
-    mostPopular: true,
-  },
-  {
-    name: 'Pro' as const,
-    id: 'tier-pro',
-    description: 'All the features and support you need to scale and start 1:1 coaching',
-    price: { monthly: '199', annually: '169', saving: '360' },
-    href: 'https://withme.so/pricing-table',
-    secondary_headers: ['Everything in Growth, plus:', 'Annual plan only:'],
-    firstGroup: [
+    {
+      name: 'Starter' as const,
+      id: 'tier-starter',
+      description: 'Everything you need to start your online business',
+      price: { monthly: '29', annually: '25', saving: '48' },
+      href: 'https://withme.so/pricing-table',
+      secondary_headers: ['Core features:', 'Plus:'],
+      firstGroup: [
+        'Unlimited Customers',
+        '50 Subscriptions',
+        'iOS & Android apps',
+        'Courses',
+        'Digital Products',
+        'Subscriptions',
+        'Podcasts',
+        'Community',
+        'Paid or free messaging',
+        'Insights',
+        'Instant payouts',
+        'All customer admin handled'
+      ],
+      info: [
+        'Anyone who buys a product with a single payment. Ie a course, or digital download',
+        'Any recurring payment'
+      ],
+      secondGroup: [
+        'Promotional codes',
+        'Unlimited emails',
+        'Payment plans',
+      ],
+      mostPopular: false,
+    },
+    {
+      name: 'Growth' as const,
+      id: 'tier-growth',
+      description: 'Get key community building features, all in one place',
+      price: { monthly: '99', annually: '84', saving: '180' },
+      href: 'https://withme.so/pricing-table',
+      secondary_headers: ['Everything in Starter, plus:'],
+      firstGroup: [
+        'Unlimited Customers',
+        '500 Subscriptions',
+        'Custom domain',
+        'Custom branding',
+      ],
+      info: [
+        'Anyone who buys a product with a single payment. Ie a course, or digital download',
+        'Any recurring payment'
+      ],
+      mostPopular: true,
+    },
+    {
+      name: 'Pro' as const,
+      id: 'tier-pro',
+      description: 'All the features and support you need to scale and start 1:1 coaching',
+      price: { monthly: '199', annually: '169', saving: '360' },
+      href: 'https://withme.so/pricing-table',
+      secondary_headers: ['Everything in Growth, plus:', 'Plus:'],
+      firstGroup: [
         'Unlimited Customers',
         '1000 Subscriptions',
-        '1:1 Async Coaching module',
-        'Notifications',
-        'Member affiliate programme'
-    ],
-    info: [
-      'Anyone who buys a product with a single payment. Ie a course, or digital download'
-    ],
-    secondGroup: [
-      'Quarterly business reviews',
-      'Dedicated customer success manager',
-    ],
+        '1:1 Coaching module',
+      ],
+      info: [
+        'Anyone who buys a product with a single payment. Ie a course, or digital download',
+        'Any recurring payment'
+      ],
+      secondGroup: [
+        'Quarterly business reviews',
+        'Dedicated customer success manager',
+      ],
 
-    mostPopular: false,
-  },
-  {
-    name: 'Enterprise' as const,
-    id: 'tier-enterprise',
-    description: 'For those creators or brands who want more control and infinite growth',
-    price: { monthly: '399', annually: '339', saving: '720' },
-    href: 'https://withme.so/pricing-table',
-    secondary_headers: ['Everything in Pro, plus:', 'Annual plan only:'],
-    firstGroup: [
-      'Unlimited Customers',
-      'Unlimited Subscriptions',
-      'Unlimited Storage', 
-      'Custom single sign-on (SSO)',
-      'Priority support',
-      'Advanced analytics',
-      'Lower transaction fees',
-      'Custom email branding'
-    ],
-    info: [
-      'Anyone who buys a product with a single payment. Ie a course, or digital download'
-    ],
-    secondGroup: [
-      'Concierge onboarding',
-      'Quarterly business reviews', 
-      'Dedicated customer success manager',
-      'Full migration service for courses and subscriptions'
-    ],
-    mostPopular: false,
-  },
-]
+      mostPopular: false,
+    },
+    {
+      name: 'Enterprise' as const,
+      id: 'tier-enterprise',
+      description: 'For those creators or brands who want more control and infinite growth',
+      price: { monthly: '399', annually: '339', saving: '720' },
+      href: 'https://withme.so/pricing-table',
+      secondary_headers: ['Everything in Pro, plus:', 'Plus:'],
+      firstGroup: [
+        'Unlimited Customers',
+        'Unlimited Subscriptions',
+        'Unlimited Storage',
+        'Custom single sign-on (SSO)',
+        'Priority support',
+        'Advanced analytics',
+        'Lower transaction fees',
+        'Custom email branding'
+      ],
+      info: [
+        'Anyone who buys a product with a single payment. Ie a course, or digital download',
+        'Any recurring payment'
+      ],
+      secondGroup: [
+        'Concierge onboarding',
+        'Quarterly business reviews',
+        'Dedicated customer success manager',
+        'Full migration service for courses and subscriptions'
+      ],
+      mostPopular: false,
+    },
+  ]
 
 const sections: {
   name: string;
   features: { name: string; tiers: FeatureTiers, info?: string }[];
 }[] = [
-  {
-    name: 'Products',
-    features: [
-      { name: 'Customers', tiers: { Starter: 'Unlimited', Growth: 'Unlimited', Pro: 'Unlimited', Enterprise: 'Unlimited' }, info: 'Anyone who buys a product with a single payment. Ie a course, or digital download.' },
-      { name: 'Subscriptions', tiers: { Starter: '50', Growth: '500', Pro: '1000', Enterprise: 'Unlimited' } },
-      { name: 'Admins', tiers: { Starter: '1', Growth: '3', Pro: '5', Enterprise: '10' } },
-      { name: 'Moderators', tiers: { Starter: '1', Growth: '10', Pro: '15', Enterprise: '100' } },
-      { name: 'Transaction fees', tiers: { Starter: '4%', Growth: '2%', Pro: '1%', Enterprise: '0.5%' } },
-      { name: 'Content storage', tiers: { Starter: '10GB', Growth: '100GB', Pro: '250GB', Enterprise: '1TB' } },
-    ],
-  },
-  {
-    name: 'Features',
-    features: [
-      { name: 'Bulk import/export', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'In-app notifications', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Basic moderation', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Weekly email digest', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Events', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'GDPR compliant', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'iOS and Android App', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Chat spaces', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Scheduled posts', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Advanced reporting', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'Custom domain', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
-      { name: 'White-labeled community', tiers: { Starter: false, Growth: true, Pro: true, Enterprise: true } },
-    ],
-  },
-]
+    {
+      name: 'Products',
+      features: [
+        { name: 'Customers', tiers: { Starter: 'Unlimited', Growth: 'Unlimited', Pro: 'Unlimited', Enterprise: 'Unlimited' }, info: 'Anyone who buys a product with a single payment. Ie a course, or digital download.' },
+        { name: 'Subscriptions', tiers: { Starter: '50', Growth: '500', Pro: '1000', Enterprise: 'Unlimited' }, info: 'Any recurring payment' },
+        { name: 'Admins', tiers: { Starter: '1', Growth: '3', Pro: '5', Enterprise: '10' } },
+        { name: 'Moderators', tiers: { Starter: '1', Growth: '10', Pro: '15', Enterprise: '100' } },
+        { name: 'Transaction fees', tiers: { Starter: '4%', Growth: '2%', Pro: '1%', Enterprise: '0.5%' } },
+        { name: 'Content storage', tiers: { Starter: '10GB', Growth: '100GB', Pro: '250GB', Enterprise: '1TB' }, info: 'Example - XX videos, \nXXX PDF\'s, \nUnlimited Youtube embeds' },
+      ],
+    },
+    // {
+    //   name: 'Features',
+    //   features: [
+    //     { name: 'Bulk import/export', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
+    //     { name: 'In-app notifications', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
+    //     { name: 'Basic moderation', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
+    //     { name: 'Weekly email digest', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
+    //     { name: 'Events', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
+    //     { name: 'GDPR compliant', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
+    //     { name: 'iOS and Android App', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
+    //     { name: 'Chat spaces', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
+    //     { name: 'Scheduled posts', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
+    //     { name: 'Advanced reporting', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
+    //     { name: 'Custom domain', tiers: { Starter: true, Growth: true, Pro: true, Enterprise: true } },
+    //     { name: 'White-labeled community', tiers: { Starter: false, Growth: true, Pro: true, Enterprise: true } },
+    //   ],
+    // },
+  ]
 
 function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(' ')
@@ -286,7 +282,8 @@ function SuccessLaunch() {
 
 export default function Pricing() {
   const currencySymbol = getCurrencySymbol();
-  const [frequency, setFrequency] = useState<{ value: FrequencyValue; label: string; priceSuffix: string , saving: string }>(frequencies[0]);
+  const [frequency, setFrequency] = useState<{ value: FrequencyValue; label: string; priceSuffix: string, saving: string }>(frequencies[0]);
+  const [toggleComparePlans, setToggleComparePlans] = useState(false)
 
   return (
     <div className="bg-transparent py-12 sm:py-12">
@@ -355,8 +352,8 @@ export default function Pricing() {
               {
                 frequency.value === 'annually' ?
                   <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">Saving {currencySymbol}{tier.price.saving}</span>
-                : 
-                <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">&nbsp;</span>
+                  :
+                  <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">&nbsp;</span>
               }
             </p>
             <a
@@ -380,7 +377,7 @@ export default function Pricing() {
                 <li key={feature} className="flex gap-x-3 items-center">
                   <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-[#3C55F3]" />
                   {feature}
-                  {tier.info && tier.info[index] && 
+                  {tier.info && tier.info[index] &&
                     <ToolTip
                       text={tier.info[index]}
                       hover
@@ -402,171 +399,185 @@ export default function Pricing() {
         ))}
       </div>
 
+      <div className="mt-24 flex justify-center">
+        <button
+          type="button"
+          onClick={() => setToggleComparePlans(!toggleComparePlans)} 
+          className='flex gap-2 text-lg font-semibold border-2 border-black rounded-full px-4 py-2 duration-200 hover:bg-gray-100'
+>
+          Compare plans features
+          <ChevronDownIcon 
+            className={`w-8 duration-200 ${toggleComparePlans ? 'transform rotate-180' : ''}`}
+          />
+        </button>
+      </div>  
 
+      <div className={`${toggleComparePlans ? 'h-[1200px]' : 'h-0'} transition-all duration-300 overflow-hidden `}>
+        <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+          <div className="mx-auto max-w-4xl px-6 text-center lg:max-w-4xl lg:px-8 mt-10 mb-12">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-950 sm:text-6xl lg:text-pretty">
+              Compare plans and Features
+            </h1>
+            <p className="mt-6 mx-auto max-w-4xl text-pretty text-md text-[#6E89AF] sm:text-xl/8">
+              WithMe is the partner for growth to the world&apos;s best creators and experts. With flexible pricing options, we&apos;re here to help you succeed.
+            </p>
+          </div>
 
-      <div className="mx-auto max-w-2xl px-6 pt-16 sm:pt-24 lg:max-w-7xl lg:px-8">
-        <div className="mx-auto max-w-4xl px-6 text-center lg:max-w-4xl lg:px-8 mt-24 mb-12">
-          <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-950 sm:text-6xl lg:text-pretty">
-            Compare plans and Features
-          </h1>
-          <p className="mt-6 mx-auto max-w-4xl text-pretty text-md text-[#6E89AF] sm:text-xl/8">
-            WithMe is the partner for growth to the world&apos;s best creators and experts. With flexible pricing options, we&apos;re here to help you succeed.
-          </p>
-        </div>
+          <table className="w-full text-left max-sm:hidden">
+            <caption className="sr-only">Pricing plan comparison</caption>
+            <colgroup>
+              <col className="w-1/5" />
+              <col className="w-1/5" />
+              <col className="w-1/5" />
+              <col className="w-1/5" />
+              <col className="w-1/5" />
+            </colgroup>
+            <thead>
+              <tr>
+                <td className="p-0" />
+                {tiers.map((tier) => (
+                  <th key={tier.name} scope="col" className="p-0">
+                    <div className="text-sm font-semibold text-[#3C55F3]">
+                      {tier.name} <span className="sr-only">plan</span>
+                    </div>
+                  </th>
+                ))}
+              </tr>
+              <tr>
+                <th className="p-0" />
+                {tiers.map((tier) => (
+                  <td key={tier.name} className="px-0 pb-0 pt-3">
+                    <a
+                      href={tier.href}
+                      aria-label={`Get started with the ${tier.name} plan`}
+                      className="inline-block rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                    >
+                      Get started
+                    </a>
+                  </td>
+                ))}
+              </tr>
+            </thead>
+            {sections.map((section) => (
+              <tbody key={section.name} className="group">
+                <tr>
+                  <th scope="colgroup" colSpan={5} className="px-0 pb-0 pt-10 group-first-of-type:pt-5">
+                    <div className="-mx-4 rounded-lg bg-gray-50 px-4 py-3 text-sm/6 font-semibold text-gray-950">
+                      {section.name}
+                    </div>
+                  </th>
+                </tr>
+                {section.features.map((feature) => (
+                  <tr key={feature.name} className="border-b border-gray-100 last:border-none">
+                    <th scope="row" className="px-0 py-4 text-sm/6 font-normal text-gray-600 flex items-center gap-2">
+                      {feature.name}
+                      {feature.info &&
+                        <ToolTip
+                          text={feature.info}
+                          hover
+                          panelClassName={`${feature.name === 'Content storage' ? 'w-56' : ''}`}
+                        />
+                      }
+                    </th>
+                    {tiers.map((tier) => (
+                      <td key={tier.name} className="p-4 max-sm:text-center">
+                        {typeof feature.tiers[tier.name] === 'string' ? (
+                          <>
+                            <span className="sr-only">{tier.name} includes:</span>
+                            <span className="text-sm/6 text-gray-950">{feature.tiers[tier.name]}</span>
+                          </>
+                        ) : (
+                          <>
+                            {feature.tiers[tier.name] === true ? (
+                              <CheckIcon aria-hidden="true" className="inline-block size-4 fill-green-600" />
+                            ) : (
+                              <MinusIcon aria-hidden="true" className="inline-block size-4 fill-gray-400" />
+                            )}
 
-        <table className="w-full text-left max-sm:hidden">
-          <caption className="sr-only">Pricing plan comparison</caption>
-          <colgroup>
-            <col className="w-1/5" />
-            <col className="w-1/5" />
-            <col className="w-1/5" />
-            <col className="w-1/5" />
-            <col className="w-1/5" />
-          </colgroup>
-          <thead>
-            <tr>
-              <td className="p-0" />
+                            <span className="sr-only">
+                              {feature.tiers[tier.name] === true
+                                ? `Included in ${tier.name}`
+                                : `Not included in ${tier.name}`}
+                            </span>
+                          </>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            ))}
+          </table>
+
+          <TabGroup className="sm:hidden">
+            <TabList className="flex">
               {tiers.map((tier) => (
-                <th key={tier.name} scope="col" className="p-0">
-                  <div className="text-sm font-semibold text-[#3C55F3]">
-                    {tier.name} <span className="sr-only">plan</span>
-                  </div>
-                </th>
+                <Tab
+                  key={tier.name}
+                  className="w-1/4 border-b border-gray-100 py-4 text-base/8 font-medium text-[#3C55F3] data-[selected]:border-[#3C55F3] [&:not([data-focus])]:focus:outline-none"
+                >
+                  {tier.name}
+                </Tab>
               ))}
-            </tr>
-            <tr>
-              <th className="p-0" />
+            </TabList>
+            <TabPanels as={Fragment}>
               {tiers.map((tier) => (
-                <td key={tier.name} className="px-0 pb-0 pt-3">
+                <TabPanel key={tier.name}>
                   <a
                     href={tier.href}
-                    aria-label={`Get started with the ${tier.name} plan`}
-                    className="inline-block rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                    target='_blank'
+                    className="mt-8 block rounded-md bg-white px-3.5 py-2.5 text-center text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                   >
                     Get started
                   </a>
-                </td>
-              ))}
-            </tr>
-          </thead>
-          {sections.map((section) => (
-            <tbody key={section.name} className="group">
-              <tr>
-                <th scope="colgroup" colSpan={5} className="px-0 pb-0 pt-10 group-first-of-type:pt-5">
-                  <div className="-mx-4 rounded-lg bg-gray-50 px-4 py-3 text-sm/6 font-semibold text-gray-950">
-                    {section.name}
-                  </div>
-                </th>
-              </tr>
-              {section.features.map((feature) => (
-                <tr key={feature.name} className="border-b border-gray-100 last:border-none">
-                  <th scope="row" className="px-0 py-4 text-sm/6 font-normal text-gray-600 flex items-center gap-2">
-                    {feature.name}
-                    {feature.info &&
-                      <ToolTip
-                        text={feature.info}
-                        hover
-                      />
-                    }
-                  </th>
-                  {tiers.map((tier) => (
-                    <td key={tier.name} className="p-4 max-sm:text-center">
-                      {typeof feature.tiers[tier.name] === 'string' ? (
-                        <>
-                          <span className="sr-only">{tier.name} includes:</span>
-                          <span className="text-sm/6 text-gray-950">{feature.tiers[tier.name]}</span>
-                        </>
-                      ) : (
-                        <>
-                          {feature.tiers[tier.name] === true ? (
-                            <CheckIcon aria-hidden="true" className="inline-block size-4 fill-green-600" />
-                          ) : (
-                            <MinusIcon aria-hidden="true" className="inline-block size-4 fill-gray-400" />
-                          )}
+                  {sections.map((section) => (
+                    <Fragment key={section.name}>
+                      <div className="-mx-6 mt-10 rounded-lg bg-gray-50 px-6 py-3 text-sm/6 font-semibold text-gray-950 group-first-of-type:mt-5">
+                        {section.name}
+                      </div>
+                      <dl>
+                        {section.features.map((feature) => (
+                          <div
+                            key={feature.name}
+                            className="grid grid-cols-2 border-b border-gray-100 py-4 last:border-none"
+                          >
+                            <dt className="text-sm/6 font-normal text-gray-600 flex gap-2 items-center">
+                              {feature.name}
+                              {feature.info &&
+                                <ToolTip
+                                  text={feature.info}
+                                  hover
+                                />
+                              }
+                            </dt>
+                            <dd className="text-center">
+                              {typeof feature.tiers[tier.name] === 'string' ? (
+                                <span className="text-sm/6 text-gray-950">{feature.tiers[tier.name]}</span>
+                              ) : (
+                                <>
+                                  {feature.tiers[tier.name] === true ? (
+                                    <CheckIcon aria-hidden="true" className="inline-block size-4 fill-green-600" />
+                                  ) : (
+                                    <MinusIcon aria-hidden="true" className="inline-block size-4 fill-gray-400" />
+                                  )}
 
-                          <span className="sr-only">
-                            {feature.tiers[tier.name] === true
-                              ? `Included in ${tier.name}`
-                              : `Not included in ${tier.name}`}
-                          </span>
-                        </>
-                      )}
-                    </td>
+                                  <span className="sr-only">{feature.tiers[tier.name] === true ? 'Yes' : 'No'}</span>
+                                </>
+                              )}
+                            </dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </Fragment>
                   ))}
-                </tr>
+                </TabPanel>
               ))}
-            </tbody>
-          ))}
-        </table>
-
-        <TabGroup className="sm:hidden">
-          <TabList className="flex">
-            {tiers.map((tier) => (
-              <Tab
-                key={tier.name}
-                className="w-1/4 border-b border-gray-100 py-4 text-base/8 font-medium text-[#3C55F3] data-[selected]:border-[#3C55F3] [&:not([data-focus])]:focus:outline-none"
-              >
-                {tier.name}
-              </Tab>
-            ))}
-          </TabList>
-          <TabPanels as={Fragment}>
-            {tiers.map((tier) => (
-              <TabPanel key={tier.name}>
-                <a
-                  href={tier.href}
-                  target='_blank'
-                  className="mt-8 block rounded-md bg-white px-3.5 py-2.5 text-center text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                >
-                  Get started
-                </a>
-                {sections.map((section) => (
-                  <Fragment key={section.name}>
-                    <div className="-mx-6 mt-10 rounded-lg bg-gray-50 px-6 py-3 text-sm/6 font-semibold text-gray-950 group-first-of-type:mt-5">
-                      {section.name}
-                    </div>
-                    <dl>
-                      {section.features.map((feature) => (
-                        <div
-                          key={feature.name}
-                          className="grid grid-cols-2 border-b border-gray-100 py-4 last:border-none"
-                        >
-                          <dt className="text-sm/6 font-normal text-gray-600 flex gap-2 items-center">
-                            {feature.name}
-                            {feature.info &&
-                              <ToolTip
-                                text={feature.info}
-                                hover
-                              />
-                            }
-                          </dt>
-                          <dd className="text-center">
-                            {typeof feature.tiers[tier.name] === 'string' ? (
-                              <span className="text-sm/6 text-gray-950">{feature.tiers[tier.name]}</span>
-                            ) : (
-                              <>
-                                {feature.tiers[tier.name] === true ? (
-                                  <CheckIcon aria-hidden="true" className="inline-block size-4 fill-green-600" />
-                                ) : (
-                                  <MinusIcon aria-hidden="true" className="inline-block size-4 fill-gray-400" />
-                                )}
-
-                                <span className="sr-only">{feature.tiers[tier.name] === true ? 'Yes' : 'No'}</span>
-                              </>
-                            )}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </Fragment>
-                ))}
-              </TabPanel>
-            ))}
-          </TabPanels>
-        </TabGroup>
+            </TabPanels>
+          </TabGroup>
 
 
-        <SuccessLaunch />
+          <SuccessLaunch />
+        </div>
       </div>
     </div>
   )

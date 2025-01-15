@@ -84,7 +84,7 @@ const ToolTip: React.FC<Props> = ({
             >
               <PopoverPanel 
                 static 
-                className={`absolute z-10 w-48 ${defaultPanelClasses} ${positionClasses[position]} ${panelClassName}`}
+                className={`absolute z-10 w-48 whitespace-pre-line ${defaultPanelClasses} ${positionClasses[position]} ${panelClassName}`}
               >
                 <div className={`${defaultTextClasses} ${textClassName}`}>
                   {text}
