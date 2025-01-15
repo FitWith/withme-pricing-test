@@ -117,7 +117,7 @@ const tiers: {
         'Unlimited emails',
         'Payment plans',
       ],
-      mostPopular: false,
+      mostPopular: true,
     },
     {
       name: 'Growth' as const,
@@ -136,7 +136,7 @@ const tiers: {
         'Anyone who buys a product with a single payment. Ie a course, or digital download',
         'Any recurring payment'
       ],
-      mostPopular: true,
+      mostPopular: false,
     },
     {
       name: 'Pro' as const,
@@ -328,7 +328,7 @@ export default function Pricing() {
             {
               tier.mostPopular && (
                 <span className="absolute top-0 right-1/2 translate-x-1/2 bg-[#3C55F3] text-white text-xs/5 font-semibold px-4 py-1 rounded-b-lg">
-                  Most Popular
+                 Start here
                 </span>
               )
             }
