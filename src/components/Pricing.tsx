@@ -109,8 +109,8 @@ const tiers: {
         'All customer admin handled'
       ],
       info: [
-        'Anyone who buys a product with a single payment. Ie a course, or digital download',
-        'Any recurring payment'
+        // 'Anyone who buys a product with a single payment. Ie a course, or digital download',
+        // 'Any recurring payment'
       ],
       secondGroup: [
         'Promotional codes',
@@ -133,8 +133,8 @@ const tiers: {
         'Custom branding',
       ],
       info: [
-        'Anyone who buys a product with a single payment. Ie a course, or digital download',
-        'Any recurring payment'
+        // 'Anyone who buys a product with a single payment. Ie a course, or digital download',
+        // 'Any recurring payment'
       ],
       mostPopular: false,
     },
@@ -151,8 +151,8 @@ const tiers: {
         '1:1 Coaching module',
       ],
       info: [
-        'Anyone who buys a product with a single payment. Ie a course, or digital download',
-        'Any recurring payment'
+        // 'Anyone who buys a product with a single payment. Ie a course, or digital download',
+        // 'Any recurring payment'
       ],
       secondGroup: [
         'Quarterly business reviews',
@@ -179,8 +179,8 @@ const tiers: {
         'Custom email branding',
       ],
       info: [
-        'Anyone who buys a product with a single payment. Ie a course, or digital download',
-        'Any recurring payment'
+        // 'Anyone who buys a product with a single payment. Ie a course, or digital download',
+        // 'Any recurring payment'
       ],
       secondGroup: [
         'Concierge onboarding',
