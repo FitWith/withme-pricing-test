@@ -96,7 +96,7 @@ const tiers: {
       secondary_headers: ['Core features:', 'Plus:'],
       firstGroup: [
         'Unlimited Customers',
-        '50 Subscriptions',
+        'Up to 50 Subscribers',
         'iOS & Android apps',
         'Courses',
         'Digital Products',
@@ -128,7 +128,7 @@ const tiers: {
       secondary_headers: ['Everything in Starter, plus:'],
       firstGroup: [
         'Unlimited Customers',
-        '500 Subscriptions',
+        'Up to 500 Subscriptions',
         'Custom domain',
         'Custom branding',
       ],
@@ -147,7 +147,7 @@ const tiers: {
       secondary_headers: ['Everything in Growth, plus:', 'Plus:'],
       firstGroup: [
         'Unlimited Customers',
-        '1000 Subscriptions',
+        'Up to 1000 Subscriptions',
         '1:1 Coaching module',
       ],
       info: [
@@ -176,7 +176,7 @@ const tiers: {
         'Priority support',
         'Advanced analytics',
         'Lower transaction fees',
-        'Custom email branding'
+        'Custom email branding',
       ],
       info: [
         'Anyone who buys a product with a single payment. Ie a course, or digital download',
@@ -186,7 +186,7 @@ const tiers: {
         'Concierge onboarding',
         'Quarterly business reviews',
         'Dedicated customer success manager',
-        'Full migration service for courses and subscriptions'
+        'Full migration service for courses and subscriptions',
       ],
       mostPopular: false,
     },
