@@ -90,13 +90,13 @@ const tiers: {
     {
       name: 'Starter' as const,
       id: 'tier-starter',
-      description: 'Everything you need to start your online business',
+      description: 'All features included. Start selling digital products and courses and upsell your first 50 subscriptions',
       price: { monthly: '29', annually: '25', saving: '48' },
       href: 'https://withme.so/pricing-table',
       secondary_headers: ['Core features:', 'Plus:'],
       firstGroup: [
-        'Unlimited Customers',
-        'Up to 50 Subscribers',
+        'Sell as many products as you want',
+        'Support up to 50 Subscribers',
         'iOS & Android apps',
         'Courses',
         'Digital Products',
@@ -117,18 +117,18 @@ const tiers: {
         'Unlimited emails',
         'Payment plans',
       ],
-      mostPopular: true,
+      mostPopular: false,
     },
     {
       name: 'Growth' as const,
       id: 'tier-growth',
-      description: 'Get key community building features, all in one place',
+      description: 'Continue selling digital products and scale your subscription revenues',
       price: { monthly: '99', annually: '84', saving: '180' },
       href: 'https://withme.so/pricing-table',
       secondary_headers: ['Everything in Starter, plus:'],
       firstGroup: [
-        'Unlimited Customers',
-        'Up to 500 Subscriptions',
+        'Sell as many products as you want',
+        'Support up to 500 Subscriptions',
         'Custom domain',
         'Custom branding',
       ],
@@ -136,18 +136,18 @@ const tiers: {
         // 'Anyone who buys a product with a single payment. Ie a course, or digital download',
         // 'Any recurring payment'
       ],
-      mostPopular: false,
+      mostPopular: true,
     },
     {
       name: 'Pro' as const,
       id: 'tier-pro',
-      description: 'All the features and support you need to scale and start 1:1 coaching',
+      description: 'Scale your digital product sales, scale your subscriptions and start doing 1:1 coaching',
       price: { monthly: '199', annually: '169', saving: '360' },
       href: 'https://withme.so/pricing-table',
       secondary_headers: ['Everything in Growth, plus:', 'Plus:'],
       firstGroup: [
-        'Unlimited Customers',
-        'Up to 1000 Subscriptions',
+        'Sell as many products as you want',
+        'Support up to 1000 Subscriptions',
         '1:1 Coaching module',
       ],
       info: [
@@ -169,7 +169,7 @@ const tiers: {
       href: 'https://withme.so/pricing-table',
       secondary_headers: ['Everything in Pro, plus:', 'Plus:'],
       firstGroup: [
-        'Unlimited Customers',
+        'Sell as many products as you want',
         'Unlimited Subscriptions',
         'Unlimited Storage',
         'Custom single sign-on (SSO)',
@@ -287,11 +287,11 @@ export default function Pricing() {
 
   return (
     <div className="bg-transparent py-12 sm:py-12">
-      <div className="mx-auto max-w-4xl px-6 text-center lg:max-w-4xl lg:px-8">
-        <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-950 sm:text-6xl lg:text-pretty">
+      <div className="mx-auto px-6 text-center lg:px-8">
+        <h1 className="text-balance text-3xl font-semibold tracking-tight text-gray-950 sm:text-5xl lg:text-pretty">
           Choose the WithMe plan that&apos;s right for you.
         </h1>
-        <p className="mt-6 mx-auto max-w-4xl text-pretty text-lg text-[#6E89AF] sm:text-xl/8">
+        <p className="mt-6 mx-auto text-pretty text-xl text-[#42464d] sm:text-xl/8">
           WithMe is the partner for growth to the world&apos;s best creators and experts. <br />No obligations, no contracts, cancel at any time.
         </p>
       </div>
@@ -328,7 +328,7 @@ export default function Pricing() {
             {
               tier.mostPopular && (
                 <span className="absolute top-0 right-1/2 translate-x-1/2 bg-[#3C55F3] text-white text-xs/5 font-semibold px-4 py-1 rounded-b-lg">
-                 Start here
+                  Recommended
                 </span>
               )
             }
@@ -341,14 +341,22 @@ export default function Pricing() {
             >
               {tier.name}
             </h3>
-            <p className="mt-4 min-h-12 text-sm/6 text-gray-600">{tier.description}</p>
+            <p className="mt-4 min-h-12 text-base/2 text-gray-700">{tier.description}</p>
             <p className="mt-6 flex flex-col">
-              <span className="flex items-baseline gap-x-1">
-                <span className="text-4xl font-semibold tracking-tight text-gray-900">
-                  {currencySymbol}{tier.price[frequency.value]}
+              {tier.id === "tier-enterprise" ? (
+                <span className="flex items-baseline gap-x-1">
+                  <span className="text-4xl font-semibold tracking-tight text-gray-900">
+                    Custom Pricing
+                  </span>
                 </span>
-                <span className="text-sm/6 font-semibold text-gray-600">{frequency.priceSuffix}</span>
-              </span>
+              ) : (
+                <span className="flex items-baseline gap-x-1">
+                  <span className="text-4xl font-semibold tracking-tight text-gray-900">
+                    {currencySymbol}{tier.price[frequency.value]}
+                  </span>
+                  <span className="text-sm/6 font-semibold text-gray-600">{frequency.priceSuffix}</span>
+                </span>
+              )}
               {
                 frequency.value === 'annually' ?
                   <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">Saving {currencySymbol}{tier.price.saving}</span>
@@ -357,7 +365,7 @@ export default function Pricing() {
               }
             </p>
             <a
-              href={getBuyLink(PRODUCT_IDS[tier.name.toLowerCase() as keyof typeof PRODUCT_IDS], frequency.value)}
+              href={tier.id === "tier-enterprise" ? "https://calendly.com/sdr-team-9rc/fitwith-demoig?month=2024-09" : getBuyLink(PRODUCT_IDS[tier.name.toLowerCase() as keyof typeof PRODUCT_IDS], frequency.value)}
               target="_blank"
               aria-describedby={tier.id}
               className={classNames(
@@ -367,7 +375,7 @@ export default function Pricing() {
                 'mt-6 block rounded-md px-3 py-2 text-center text-sm/6 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3C55F3]',
               )}
             >
-              Upgrade
+              {tier.id === "tier-enterprise" ? "Talk to sales" : "Upgrade"}
             </a>
             <ul role="list" className="mt-8 space-y-3 text-sm/6 text-gray-600">
               {tier.secondary_headers[0] && (
