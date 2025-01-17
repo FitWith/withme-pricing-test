@@ -328,26 +328,23 @@ export default function Pricing() {
             {
               tier.mostPopular && (
                 <span className="absolute top-0 right-1/2 translate-x-1/2 bg-[#3C55F3] text-white text-xs/5 font-semibold px-4 py-1 rounded-b-lg">
-                  Recommended
+                  RECOMMENDED
                 </span>
               )
             }
             <h3
               id={tier.id}
               className={classNames(
-                tier.mostPopular ? 'text-[#3C55F3]' : 'text-gray-900',
+                tier.mostPopular ? 'text-[#3C55F3]' : 'text-gray-700',
                 'text-lg/8 font-semibold',
               )}
             >
               {tier.name}
             </h3>
-            <p className="mt-4 min-h-12 text-base/2 text-gray-700">{tier.description}</p>
-            <p className="mt-6 flex flex-col">
+            <p className="mt-2 flex flex-col xl:min-h-24 justify-center">
               {tier.id === "tier-enterprise" ? (
-                <span className="flex items-baseline gap-x-1">
-                  <span className="text-4xl font-semibold tracking-tight text-gray-900">
-                    Custom Pricing
-                  </span>
+                <span className="text-3xl font-semibold tracking-tight text-gray-900 xl:text-2xl 2xl:text-3xl xl:!leading-[56px]">
+                  Custom Pricing
                 </span>
               ) : (
                 <span className="flex items-baseline gap-x-1">
@@ -358,12 +355,13 @@ export default function Pricing() {
                 </span>
               )}
               {
-                frequency.value === 'annually' ?
+                frequency.value === 'annually' &&
                   <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">Saving {currencySymbol}{tier.price.saving}</span>
-                  :
-                  <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">&nbsp;</span>
+                  // :
+                  // <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">&nbsp;</span>
               }
             </p>
+            <p className="mt-4 md:min-h-20 xl:min-h-24 2xl:min-h-20 text-base/2">{tier.description}</p>
             <a
               href={tier.id === "tier-enterprise" ? "https://calendly.com/sdr-team-9rc/fitwith-demoig?month=2024-09" : getBuyLink(PRODUCT_IDS[tier.name.toLowerCase() as keyof typeof PRODUCT_IDS], frequency.value)}
               target="_blank"
