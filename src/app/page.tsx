@@ -28,7 +28,7 @@ export default function Home() {
     <>
       <Header />
       <Image src={BackgroundImage} alt="Background" className="absolute top-0 w-full h-full object-cover opacity-50" />
-      <main className="relative">
+      <main className="relative flex flex-col items-center justify-center">
         <Pricing  />
         <EveryPlan scrollToTop={scrollToTop} />
         {/* <Faqs /> */}

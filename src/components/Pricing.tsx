@@ -71,7 +71,7 @@ const getCurrencySymbol = () => {
 
 const frequencies: { value: FrequencyValue; label: string; priceSuffix: string; saving: string }[] = [
   { value: 'monthly', label: 'Monthly', priceSuffix: '/month', saving: '0' },
-  { value: 'annually', label: 'Annually', priceSuffix: '/month, billed annually', saving: '48' },
+  { value: 'annually', label: 'Annually', priceSuffix: '/month', saving: '14%' },
 ]
 
 const tiers: {
@@ -238,7 +238,7 @@ function SuccessLaunch() {
     <div className="bg-white py-12 sm:py-12 mb-12">
       <div className="mx-auto max-w-7xl">
 
-        <div className="mx-auto mt-16 max-w-7xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
+        <div className="mx-auto mt-16 max-w-7xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none items-center lg:pr-5">
           <div className="p-8 sm:p-10 lg:flex-auto">
             <h3 className="text-3xl font-semibold tracking-tight text-gray-900">Ensure your launch is successful</h3>
             <div className="mt-8 flex items-center gap-x-4">
@@ -286,7 +286,7 @@ export default function Pricing() {
   const [toggleComparePlans, setToggleComparePlans] = useState(false)
 
   return (
-    <div className="bg-transparent py-12 sm:py-12">
+    <div className="bg-transparent py-12 sm:py-12 max-w-7xl">
       <div className="mx-auto px-6 text-center lg:px-8">
         <h1 className="text-balance text-3xl font-semibold tracking-tight text-gray-950 sm:text-5xl lg:text-pretty">
           Choose the WithMe plan that&apos;s right for you.
@@ -336,14 +336,18 @@ export default function Pricing() {
               id={tier.id}
               className={classNames(
                 tier.mostPopular ? 'text-[#3C55F3]' : 'text-gray-700',
-                'text-lg/8 font-semibold',
+                'text-lg/8 font-semibold flex items-center gap-x-3',
               )}
             >
-              {tier.name}
+              <span>{tier.name}</span>
+              {
+                frequency.value === 'annually' && tier.id !== "tier-enterprise" &&
+                  <span className="text-xs px-1.5 py-0.5 rounded bg-slate-500 text-white">- {frequency.saving}</span>
+              }
             </h3>
-            <p className="mt-2 flex flex-col xl:min-h-24 justify-center">
+            <p className="mt-2 flex flex-col sm:min-h-24 justify-center">
               {tier.id === "tier-enterprise" ? (
-                <span className="text-3xl font-semibold tracking-tight text-gray-900 xl:text-2xl 2xl:text-3xl xl:!leading-[56px]">
+                <span className="text-3xl font-semibold tracking-tight text-gray-900 xl:text-2xl xl:!leading-[56px]">
                   Custom Pricing
                 </span>
               ) : (
@@ -351,17 +355,21 @@ export default function Pricing() {
                   <span className="text-4xl font-semibold tracking-tight text-gray-900">
                     {currencySymbol}{tier.price[frequency.value]}
                   </span>
-                  <span className="text-sm/6 font-semibold text-gray-600">{frequency.priceSuffix}</span>
+                  <span className="text-sm/6 font-semibold text-gray-600 sm:whitespace-pre-line">{frequency.priceSuffix}</span>
                 </span>
               )}
               {
-                frequency.value === 'annually' &&
-                  <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">Saving {currencySymbol}{tier.price.saving}</span>
+                frequency.value === 'annually' && tier.id !== "tier-enterprise" &&
+                  // <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">Saving {currencySymbol}{tier.price.saving}</span>
+                  <span className="text-sm/6 text-gray-600 sm:whitespace-pre-line flex items-center gap-x-1 mt-1">
+                    <span className='line-through'>{currencySymbol}{tier.price.monthly} / mo</span>
+                    <span> Billed annually</span>
+                  </span>
                   // :
                   // <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">&nbsp;</span>
               }
             </p>
-            <p className="mt-4 md:min-h-20 xl:min-h-24 2xl:min-h-20 text-base/2">{tier.description}</p>
+            <p className="mt-4 md:min-h-24 text-base/2">{tier.description}</p>
             <a
               href={tier.id === "tier-enterprise" ? "https://calendly.com/sdr-team-9rc/fitwith-demoig?month=2024-09" : getBuyLink(PRODUCT_IDS[tier.name.toLowerCase() as keyof typeof PRODUCT_IDS], frequency.value)}
               target="_blank"
@@ -418,10 +426,10 @@ export default function Pricing() {
         </button>
       </div>  
 
-      <div className={`${toggleComparePlans ? 'h-[1200px]' : 'h-0'} transition-all duration-300 overflow-hidden `}>
+      <div className={`${toggleComparePlans ? 'h-fit' : 'h-0'} transition-all duration-300 overflow-hidden `}>
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
           <div className="mx-auto max-w-4xl px-6 text-center lg:max-w-4xl lg:px-8 mt-10 mb-12">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-950 sm:text-6xl lg:text-pretty">
+            <h1 className="text-balance text-2xl font-semibold tracking-tight text-gray-950 sm:text-6xl lg:text-pretty">
               Compare plans and Features
             </h1>
             <p className="mt-6 mx-auto max-w-4xl text-pretty text-md text-[#6E89AF] sm:text-xl/8">
@@ -580,11 +588,10 @@ export default function Pricing() {
               ))}
             </TabPanels>
           </TabGroup>
-
-
-          <SuccessLaunch />
         </div>
       </div>
+
+      <SuccessLaunch />
     </div>
   )
 }

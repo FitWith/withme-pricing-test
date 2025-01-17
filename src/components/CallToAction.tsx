@@ -8,10 +8,10 @@ export function CallToAction({ scrollToTop }: { scrollToTop: () => void }) {
   return (
     <section
       id="get-started-today"
-      className="relative overflow-hidden py-32 mb-24 font-roboto"
+      className="relative py-32 my-24 font-roboto w-screen"
     >
       <Image
-        className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2 rotate-180"
+        className="absolute h-screen left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-180"
         src={BackgroundImage}
         alt=""
       />
