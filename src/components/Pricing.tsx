@@ -288,7 +288,7 @@ export default function Pricing() {
   return (
     <div className="bg-transparent py-12 sm:py-12 max-w-7xl">
       <div className="mx-auto px-6 text-center lg:px-8">
-        <h1 className="text-balance text-3xl font-semibold tracking-tight text-gray-950 sm:text-5xl lg:text-pretty">
+        <h1 className="text-balance text-3xl font-[900] tracking-tight text-gray-950 sm:text-5xl lg:text-pretty">
           Choose the WithMe plan that&apos;s right for you.
         </h1>
         <p className="mt-6 mx-auto text-pretty text-xl text-[#42464d] sm:text-xl/8">
@@ -335,7 +335,7 @@ export default function Pricing() {
             <h3
               id={tier.id}
               className={classNames(
-                tier.mostPopular ? 'text-[#3C55F3]' : 'text-gray-700',
+                tier.mostPopular ? 'text-[#3C55F3]' : 'text-[#717680]',
                 'text-lg/8 font-semibold flex items-center gap-x-3',
               )}
             >
