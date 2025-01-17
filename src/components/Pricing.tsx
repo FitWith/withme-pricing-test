@@ -292,7 +292,7 @@ export default function Pricing() {
           Choose the WithMe plan that&apos;s right for you.
         </h1>
         <p className="mt-6 mx-auto text-pretty text-xl text-[#42464d] sm:text-xl/8">
-          WithMe is the partner for growth to the world&apos;s best creators and experts. <br />No obligations, no contracts, cancel at any time.
+          No obligations, no contracts, cancel at any time.
         </p>
       </div>
 
@@ -433,7 +433,7 @@ export default function Pricing() {
               Compare plans and Features
             </h1>
             <p className="mt-6 mx-auto max-w-4xl text-pretty text-md text-[#6E89AF] sm:text-xl/8">
-              WithMe is the partner for growth to the world&apos;s best creators and experts. With flexible pricing options, we&apos;re here to help you succeed.
+              No obligations, no contracts, cancel at any time.
             </p>
           </div>
 
