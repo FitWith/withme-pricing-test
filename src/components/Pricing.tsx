@@ -284,7 +284,7 @@ export default function Pricing() {
   const [toggleComparePlans, setToggleComparePlans] = useState(false)
 
   return (
-    <div className="bg-transparent py-12 sm:py-12 max-w-8xl mx-8">
+    <div className="bg-transparent py-12 sm:py-12 max-w-8xl mx-16">
       <div className="mx-auto px-6 text-center lg:px-8">
         <h1 className="text-balance text-3xl font-[700] tracking-tight text-gray-950 sm:text-5xl lg:text-pretty">
           Choose the WithMe plan that&apos;s right for you.
@@ -430,7 +430,7 @@ export default function Pricing() {
             <h1 className="text-balance text-2xl font-semibold tracking-tight text-gray-950 sm:text-6xl lg:text-pretty">
               Compare plans and Features
             </h1>
-            <p className="mt-6 mx-auto max-w-4xl font-roboto text-pretty text-md text-[#6E89AF] sm:text-xl/8">
+            <p className="mt-6 mx-auto max-w-4xl text-pretty text-md text-[#6E89AF] sm:text-xl/8">
               No obligations, no contracts, cancel at any time.
             </p>
           </div>
