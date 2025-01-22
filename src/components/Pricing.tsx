@@ -301,6 +301,7 @@ export default function Pricing() {
             onChange={setFrequency}
             className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs/5 font-semibold ring-1 ring-inset ring-gray-200 bg-white/80"
           >
+            
             {frequencies.map((option) => (
               <Radio
                 key={option.value}
