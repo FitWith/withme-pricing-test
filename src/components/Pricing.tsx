@@ -199,12 +199,12 @@ const sections: {
     {
       name: 'Products',
       features: [
-        { name: 'Customers', tiers: { Starter: 'Unlimited', Growth: 'Unlimited', Pro: 'Unlimited', Enterprise: 'Unlimited' }, info: 'Anyone who buys a product with a single payment. Ie a course, or digital download.' },
-        { name: 'Subscriptions', tiers: { Starter: '50', Growth: '500', Pro: '1000', Enterprise: 'Unlimited' }, info: 'Any recurring payment' },
-        { name: 'Admins', tiers: { Starter: '1', Growth: '3', Pro: '5', Enterprise: '10' } },
-        { name: 'Moderators', tiers: { Starter: '1', Growth: '10', Pro: '15', Enterprise: '100' } },
-        { name: 'Transaction fees', tiers: { Starter: '4%', Growth: '2%', Pro: '1%', Enterprise: '0.5%' } },
-        { name: 'Content storage', tiers: { Starter: '10GB', Growth: '100GB', Pro: '250GB', Enterprise: '1TB' }},
+        { name: 'Customers', tiers: { Starter: 'Unlimited', Growth: 'Unlimited', Pro: 'Unlimited', Enterprise: '' }, info: 'Anyone who buys a product with a single payment. Ie a course, or digital download.' },
+        { name: 'Subscriptions', tiers: { Starter: '50', Growth: '500', Pro: '1000', Enterprise: '' }, info: 'Any recurring payment' },
+        { name: 'Admins', tiers: { Starter: '1', Growth: '3', Pro: '5', Enterprise: '' } },
+        { name: 'Moderators', tiers: { Starter: '1', Growth: '10', Pro: '15', Enterprise: '' } },
+        { name: 'Transaction fees', tiers: { Starter: '4%', Growth: '2%', Pro: '1%', Enterprise: '' } },
+        { name: 'Content storage', tiers: { Starter: '10GB', Growth: '100GB', Pro: '250GB', Enterprise: '' }},
       ],
     },
     // {
@@ -231,23 +231,21 @@ function classNames(...classes: string[]): string {
 }
 
 
-
 function SuccessLaunch() {
   const currencySymbol = getCurrencySymbol();
   return (
-    <div className="bg-white py-12 sm:py-12 mb-12">
+    <div className="bg-white py-8 sm:py-8 mb-8">
       <div className="mx-auto max-w-7xl">
-
-        <div className="mx-auto mt-16 max-w-7xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none items-center lg:pr-5">
-          <div className="p-8 sm:p-10 lg:flex-auto">
-            <h3 className="text-3xl font-semibold tracking-tight text-gray-900">Ensure your launch is successful</h3>
-            <div className="mt-8 flex items-center gap-x-4">
+        <div className="mx-auto mt-12 max-w-7xl rounded-3xl ring-1 ring-gray-200 sm:mt-16 lg:mx-0 lg:flex lg:max-w-none items-center lg:pr-3">
+          <div className="p-6 sm:p-8 lg:flex-auto">
+            <h3 className="text-2xl font-semibold tracking-tight text-gray-900">Ensure your launch is successful</h3>
+            <div className="mt-6 flex items-center gap-x-4">
               <h4 className="flex-none text-sm/6 font-semibold text-[#3C55F3]">What&apos;s included</h4>
-              <div className="h-px flex-auto bg-gray-100" />
+              {/* <div className="h-px flex-auto bg-gray-100" /> */}
             </div>
-            <ul role="list" className="mt-8 grid grid-cols-1 gap-4 text-sm/6 text-gray-600 sm:grid-cols-2 sm:gap-6">
+            <ul role="list" className="mt-6 grid grid-cols-1 gap-3 text-sm/6 text-gray-600 sm:grid-cols-2 sm:gap-4">
               {includedFeatures.map((feature) => (
-                <li key={feature} className="flex gap-x-3 mt-4">
+                <li key={feature} className="flex gap-x-3 mt-2">
                   <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-[#3C55F3]" />
                   {feature}
                 </li>
@@ -255,16 +253,16 @@ function SuccessLaunch() {
             </ul>
           </div>
           <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:shrink-0">
-            <div className="rounded-2xl bg-gray-50 py-4 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-8">
+            <div className="rounded-2xl bg-gray-50 py-3 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-6">
               <div className="mx-auto max-w-xs px-8">
                 <p className="text-base font-semibold text-gray-600">Implementation Specialist</p>
-                <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                  <span className="text-5xl font-semibold tracking-tight text-gray-900">{currencySymbol}1000</span>
+                <p className="mt-4 flex items-baseline justify-center gap-x-2">
+                  <span className="text-4xl font-semibold tracking-tight text-gray-900">{currencySymbol}1000</span>
                   <span className="text-sm/6 font-semibold tracking-wide text-gray-600">{currencySymbol === '£' ? 'GBP' : 'USD'}</span>
                 </p>
                 <a
                   href={getBuyLink(PRODUCT_IDS.implementation)} target='_blank'
-                  className="mt-10 block w-full rounded-md bg-[#3C55F3] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#3347d1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3C55F3]"
+                  className="mt-6 block w-full rounded-md bg-[#3C55F3] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#3347d1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3C55F3]"
                 >
                   Get started
                 </a>
@@ -286,9 +284,9 @@ export default function Pricing() {
   const [toggleComparePlans, setToggleComparePlans] = useState(false)
 
   return (
-    <div className="bg-transparent py-12 sm:py-12 max-w-7xl">
+    <div className="bg-transparent py-12 sm:py-12 max-w-8xl mx-8">
       <div className="mx-auto px-6 text-center lg:px-8">
-        <h1 className="text-balance text-3xl font-[900] tracking-tight text-gray-950 sm:text-5xl lg:text-pretty">
+        <h1 className="text-balance text-3xl font-[700] tracking-tight text-gray-950 sm:text-5xl lg:text-pretty">
           Choose the WithMe plan that&apos;s right for you.
         </h1>
         <p className="mt-6 mx-auto text-pretty text-xl text-[#42464d] sm:text-xl/8">
@@ -316,7 +314,7 @@ export default function Pricing() {
         </fieldset>
       </div>
 
-      <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-12 xl:max-w-none xl:grid-cols-4">
+      <div className="isolate mx-auto mt-12 grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-12 xl:max-w-none xl:grid-cols-4">
         {tiers.map((tier) => (
           <div
             key={tier.id}
@@ -432,7 +430,7 @@ export default function Pricing() {
             <h1 className="text-balance text-2xl font-semibold tracking-tight text-gray-950 sm:text-6xl lg:text-pretty">
               Compare plans and Features
             </h1>
-            <p className="mt-6 mx-auto max-w-4xl text-pretty text-md text-[#6E89AF] sm:text-xl/8">
+            <p className="mt-6 mx-auto max-w-4xl font-roboto text-pretty text-md text-[#6E89AF] sm:text-xl/8">
               No obligations, no contracts, cancel at any time.
             </p>
           </div>
@@ -466,7 +464,7 @@ export default function Pricing() {
                       aria-label={`Get started with the ${tier.name} plan`}
                       className="inline-block rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                     >
-                      Get started
+                      {tier.id === "tier-enterprise" ? "Talk to sales" : "Get started"}
                     </a>
                   </td>
                 ))}
