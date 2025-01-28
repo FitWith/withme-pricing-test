@@ -257,7 +257,7 @@ function SuccessLaunch() {
               <div className="mx-auto max-w-xs px-8">
                 <p className="text-base font-semibold text-gray-600">Implementation Specialist</p>
                 <p className="mt-4 flex items-baseline justify-center gap-x-2">
-                  <span className="text-4xl font-semibold tracking-tight text-gray-900">{currencySymbol}1000</span>
+                  <span className="text-4xl font-semibold tracking-tight text-gray-900">{currencySymbol}1499</span>
                   <span className="text-sm/6 font-semibold tracking-wide text-gray-600">{currencySymbol === '£' ? 'GBP' : 'USD'}</span>
                 </p>
                 <a
