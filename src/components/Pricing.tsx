@@ -36,18 +36,18 @@ type ProductIds = {
 };
 
 const PRODUCT_IDS: ProductIds = {
-  implementation: '3csaHc97LbQY84EaEM',
+  implementation: 'cN29D8gAdbQY70AdR1',
   starter: {
-    monthly: '5kA6qWdo1aMU5Ww6oo',
-    annually: '00geXs3Nr7AI3Oo28h'
+    monthly: 'dR6cPkbfTf3a98I00h',
+    annually: '6oEaHcabP9IQ84E4gw'
   },
   growth: {
-    monthly: 'cN29D86ZD08g0CceUV',
-    annually: '5kAcPk4Rvf3a2KkdQS'
+    monthly: '4gw3eK3Nrg7egBa3cr',
+    annually: 'eVa5mS6ZD8EM70AfZc'
   },
   pro: {
-    monthly: 'cN2g1w1Fj3ks0CcdQT',
-    annually: '14k9D8cjX8EM0CcbIM'
+    monthly: 'bIY2aGdo1g7edoY9AN',
+    annually: 'aEU8z40Bf8EM98I00c'
   },
   enterprise: {
     monthly: '3cscPk2Jn3ks1Gg6ot',
@@ -76,6 +76,15 @@ const annualPrices: Record<GeoCurrency['code'], Record<'Starter' | 'Growth' | 'P
   EUR: { Starter: '300', Growth: '1008', Pro: '2028' },
   SEK: { Starter: '4000', Growth: '13750', Pro: '27650' },
   USD: { Starter: '300', Growth: '1008', Pro: '2028' },
+};
+
+const implementationPrices: Record<GeoCurrency['code'], string> = {
+  GBP: '1499',
+  AUD: '2999',
+  CAD: '2699',
+  EUR: '1799',
+  SEK: '19999',
+  USD: '1499',
 };
 
 const getMonthlyFromYearly = (yearlyAmount: string | number): string => {
@@ -272,8 +281,8 @@ function SuccessLaunch() {
               <div className="mx-auto max-w-xs px-8">
                 <p className="text-base font-semibold text-gray-600">Implementation Specialist</p>
                 <p className="mt-4 flex items-baseline justify-center gap-x-2">
-                  <span className="text-4xl font-semibold tracking-tight text-gray-900">{currencySymbol}1499</span>
-                  <span className="text-sm/6 font-semibold tracking-wide text-gray-600">{currencySymbol === '£' ? 'GBP' : 'USD'}</span>
+                  <span className="text-4xl font-semibold tracking-tight text-gray-900">{currencySymbol}{implementationPrices[code]}</span>
+                  <span className="text-sm/6 font-semibold tracking-wide text-gray-600">{code.toUpperCase()}</span>
                 </p>
                 <a
                   href={getBuyLink(PRODUCT_IDS.implementation)} target='_blank'
