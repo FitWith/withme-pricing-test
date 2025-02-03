@@ -5,6 +5,7 @@ import { CheckIcon, MinusIcon, ChevronDownIcon } from '@heroicons/react/16/solid
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import { Radio, RadioGroup } from '@headlessui/react'
 import ToolTip from './ToolTip'
+import getGeoInfo, { GeoCurrency } from '@/utils/getGeoInfo'
 
 type FrequencyValue = 'monthly' | 'annually';
 
@@ -23,6 +24,8 @@ const includedFeatures = [
 
 // Payment Links
 const STRIPE_BASE_URL = 'https://buy.stripe.com/'
+
+const { code, symbol: currencySymbol } = getGeoInfo();
 
 type ProductIds = {
   implementation: string;
@@ -57,17 +60,30 @@ const getBuyLink = (productId: string | { [K in FrequencyValue]: string }, frequ
   return `${STRIPE_BASE_URL}${frequency ? productId[frequency] : ''}`;
 }
 
-const getCurrencySymbol = () => {
-  if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
-    const locale = navigator.language;
-    if (locale.startsWith('en-US')) {
-      return '$';
-    } else if (locale.startsWith('en-GB')) {
-      return '£';
-    }
-  }
-  return '$'; // Default to USD if locale is not US or UK
+const monthlyPrices: Record<GeoCurrency['code'], Record<'Starter' | 'Growth' | 'Pro', string>> = {
+  GBP: { Starter: '29', Growth: '99', Pro: '199' },
+  AUD: { Starter: '49', Growth: '175', Pro: '375' },
+  CAD: { Starter: '49', Growth: '175', Pro: '375' },
+  EUR: { Starter: '29', Growth: '99', Pro: '199' },
+  SEK: { Starter: '399', Growth: '1350', Pro: '2700' },
+  USD: { Starter: '29', Growth: '99', Pro: '199' },
 };
+
+const annualPrices: Record<GeoCurrency['code'], Record<'Starter' | 'Growth' | 'Pro', string>> = {
+  GBP: { Starter: '300', Growth: '1008', Pro: '2028' },
+  AUD: { Starter: '550', Growth: '2000', Pro: '3750' },
+  CAD: { Starter: '550', Growth: '2000', Pro: '3750' },
+  EUR: { Starter: '300', Growth: '1008', Pro: '2028' },
+  SEK: { Starter: '4000', Growth: '13750', Pro: '27650' },
+  USD: { Starter: '300', Growth: '1008', Pro: '2028' },
+};
+
+const getMonthlyFromYearly = (yearlyAmount: string | number): string => {
+  const yearly = typeof yearlyAmount === 'string' ? parseFloat(yearlyAmount) : yearlyAmount;
+  return Math.round(yearly / 12).toString();
+};
+
+
 
 const frequencies: { value: FrequencyValue; label: string; priceSuffix: string; saving: string }[] = [
   { value: 'monthly', label: 'Monthly', priceSuffix: '/month', saving: '0' },
@@ -91,7 +107,7 @@ const tiers: {
       name: 'Starter' as const,
       id: 'tier-starter',
       description: 'All features included. Start selling digital products and courses and upsell your first 50 subscriptions',
-      price: { monthly: '29', annually: '25', saving: '48' },
+      price: { monthly: monthlyPrices[code].Starter, annually: getMonthlyFromYearly(annualPrices[code].Starter), saving: '48' },
       href: 'https://withme.so/pricing-table',
       secondary_headers: ['Core features:', 'Plus:'],
       firstGroup: [
@@ -123,7 +139,7 @@ const tiers: {
       name: 'Growth' as const,
       id: 'tier-growth',
       description: 'Continue selling digital products and scale your subscription revenues',
-      price: { monthly: '99', annually: '84', saving: '180' },
+      price: { monthly: monthlyPrices[code].Growth, annually: getMonthlyFromYearly(annualPrices[code].Growth), saving: '180' },
       href: 'https://withme.so/pricing-table',
       secondary_headers: ['Everything in Starter, plus:'],
       firstGroup: [
@@ -142,7 +158,7 @@ const tiers: {
       name: 'Pro' as const,
       id: 'tier-pro',
       description: 'Scale your digital product sales, scale your subscriptions and start doing 1:1 coaching',
-      price: { monthly: '199', annually: '169', saving: '360' },
+      price: { monthly: monthlyPrices[code].Pro, annually: getMonthlyFromYearly(annualPrices[code].Pro), saving: '360' },
       href: 'https://withme.so/pricing-table',
       secondary_headers: ['Everything in Growth, plus:', 'Plus:'],
       firstGroup: [
@@ -204,7 +220,7 @@ const sections: {
         { name: 'Admins', tiers: { Starter: '1', Growth: '3', Pro: '5', Enterprise: '' } },
         { name: 'Moderators', tiers: { Starter: '1', Growth: '10', Pro: '15', Enterprise: '' } },
         { name: 'Transaction fees', tiers: { Starter: '4%', Growth: '2%', Pro: '1%', Enterprise: '' } },
-        { name: 'Content storage', tiers: { Starter: '10GB', Growth: '100GB', Pro: '250GB', Enterprise: '' }},
+        { name: 'Content storage', tiers: { Starter: '10GB', Growth: '100GB', Pro: '250GB', Enterprise: '' } },
       ],
     },
     // {
@@ -232,7 +248,6 @@ function classNames(...classes: string[]): string {
 
 
 function SuccessLaunch() {
-  const currencySymbol = getCurrencySymbol();
   return (
     <div className="bg-white py-8 sm:py-8 mb-8">
       <div className="mx-auto max-w-7xl">
@@ -279,7 +294,6 @@ function SuccessLaunch() {
 
 
 export default function Pricing() {
-  const currencySymbol = getCurrencySymbol();
   const [frequency, setFrequency] = useState<{ value: FrequencyValue; label: string; priceSuffix: string, saving: string }>(frequencies[0]);
   const [toggleComparePlans, setToggleComparePlans] = useState(false)
 
@@ -301,7 +315,7 @@ export default function Pricing() {
             onChange={setFrequency}
             className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs/5 font-semibold ring-1 ring-inset ring-gray-200 bg-white/80"
           >
-            
+
             {frequencies.map((option) => (
               <Radio
                 key={option.value}
@@ -341,7 +355,7 @@ export default function Pricing() {
               <span>{tier.name}</span>
               {
                 frequency.value === 'annually' && tier.id !== "tier-enterprise" &&
-                  <span className="text-xs px-1.5 py-0.5 rounded bg-slate-500 text-white">- {frequency.saving}</span>
+                <span className="text-xs px-1.5 py-0.5 rounded bg-slate-500 text-white">- {frequency.saving}</span>
               }
             </h3>
             <p className="mt-2 flex flex-col sm:min-h-24 justify-center">
@@ -359,13 +373,13 @@ export default function Pricing() {
               )}
               {
                 frequency.value === 'annually' && tier.id !== "tier-enterprise" &&
-                  // <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">Saving {currencySymbol}{tier.price.saving}</span>
-                  <span className="text-sm/6 text-gray-600 sm:whitespace-pre-line flex items-center gap-x-1 mt-1">
-                    <span className='line-through'>{currencySymbol}{tier.price.monthly} / mo</span>
-                    <span> Billed annually</span>
-                  </span>
-                  // :
-                  // <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">&nbsp;</span>
+                // <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">Saving {currencySymbol}{tier.price.saving}</span>
+                <span className="text-sm/6 text-gray-600 sm:whitespace-pre-line flex items-center gap-x-1 mt-1">
+                  <span className='line-through'>{currencySymbol}{tier.price.monthly} / mo</span>
+                  <span> Billed annually</span>
+                </span>
+                // :
+                // <span className="text-sm/6 font-semibold text-[#4159F2] mt-1">&nbsp;</span>
               }
             </p>
             <p className="mt-4 md:min-h-24 text-base/2">{tier.description}</p>
@@ -415,15 +429,15 @@ export default function Pricing() {
       <div className="mt-24 flex justify-center">
         <button
           type="button"
-          onClick={() => setToggleComparePlans(!toggleComparePlans)} 
+          onClick={() => setToggleComparePlans(!toggleComparePlans)}
           className='flex gap-2 text-lg font-semibold border-2 border-black rounded-full px-4 py-2 duration-200 hover:bg-gray-100'
->
+        >
           Compare plans features
-          <ChevronDownIcon 
+          <ChevronDownIcon
             className={`w-8 duration-200 ${toggleComparePlans ? 'transform rotate-180' : ''}`}
           />
         </button>
-      </div>  
+      </div>
 
       <div className={`${toggleComparePlans ? 'h-fit' : 'h-0'} transition-all duration-300 overflow-hidden `}>
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
