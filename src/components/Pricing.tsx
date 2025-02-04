@@ -375,7 +375,7 @@ export default function Pricing() {
               ) : (
                 <span className="flex items-baseline gap-x-1">
                   <span className="text-4xl font-semibold tracking-tight text-gray-900">
-                    {currencySymbol}{tier.price[frequency.value]}
+                    {currencySymbol === 'kr' ? `${tier.price[frequency.value]}${currencySymbol}` : `${currencySymbol}${tier.price[frequency.value]}`}
                   </span>
                   <span className="text-sm/6 font-semibold text-gray-600 sm:whitespace-pre-line">{frequency.priceSuffix}</span>
                 </span>
