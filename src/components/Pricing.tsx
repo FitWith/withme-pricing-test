@@ -36,7 +36,7 @@ type ProductIds = {
 };
 
 const PRODUCT_IDS: ProductIds = {
-  implementation: 'cN29D8gAdbQY70AdR1',
+  implementation: 'aEUcPk0Bf8EM1Gg28i',
   starter: {
     monthly: 'dR6cPkbfTf3a98I00h',
     annually: '6oEaHcabP9IQ84E4gw'
