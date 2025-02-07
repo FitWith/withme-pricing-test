@@ -8,7 +8,7 @@ export function CallToAction({ scrollToTop }: { scrollToTop: () => void }) {
   return (
     <section
       id="get-started-today"
-      className="relative py-12 my-24 h-96 font-roboto w-screen"
+      className="relative py-12 my-24 h-96 font-roboto w-full"
     >
       <Image
         className="absolute h-[500px] lg:h-[600px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-180"

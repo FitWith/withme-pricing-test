@@ -154,6 +154,7 @@ const tiers: {
       firstGroup: [
         'Sell as many products as you want',
         'Support up to 500 Subscriptions',
+        'Automated emails that upsell subscriptions',
         'Custom domain',
         'Custom branding',
       ],
@@ -174,6 +175,7 @@ const tiers: {
         'Sell as many products as you want',
         'Support up to 1000 Subscriptions',
         '1:1 Coaching module',
+        'Automated reports identifying customers ready for high ticket 1:1 coaching',
       ],
       info: [
         // 'Anyone who buys a product with a single payment. Ie a course, or digital download',
@@ -410,7 +412,7 @@ export default function Pricing() {
                 <li className="font-semibold text-gray-900">{tier.secondary_headers[0]}</li>
               )}
               {tier.firstGroup?.map((feature, index) => (
-                <li key={feature} className="flex gap-x-3 items-center">
+                <li key={feature} className="flex gap-x-3">
                   <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-[#3C55F3]" />
                   {feature}
                   {tier.info && tier.info[index] &&
