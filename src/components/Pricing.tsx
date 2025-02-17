@@ -35,7 +35,7 @@ type ProductIds = {
   enterprise: { [K in FrequencyValue]: string };
 };
 
-const PRODUCT_IDS: ProductIds = {
+export const PRODUCT_IDS: ProductIds = {
   implementation: 'aEUcPk0Bf8EM1Gg28i',
   starter: {
     monthly: 'dR6cPkbfTf3a98I00h',
@@ -55,7 +55,7 @@ const PRODUCT_IDS: ProductIds = {
   }
 }
 
-const getBuyLink = (productId: string | { [K in FrequencyValue]: string }, frequency?: FrequencyValue) => {
+export const getBuyLink = (productId: string | { [K in FrequencyValue]: string }, frequency?: FrequencyValue) => {
   if (typeof productId === 'string') return `${STRIPE_BASE_URL}${productId}`;
   return `${STRIPE_BASE_URL}${frequency ? productId[frequency] : ''}`;
 }
@@ -257,8 +257,7 @@ function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(' ')
 }
 
-
-function SuccessLaunch() {
+export function SuccessLaunch() {
   return (
     <div className="bg-white py-8 sm:py-8 mb-8">
       <div className="mx-auto max-w-7xl">
@@ -300,9 +299,6 @@ function SuccessLaunch() {
     </div>
   )
 }
-
-
-
 
 export default function Pricing() {
   const [frequency, setFrequency] = useState<{ value: FrequencyValue; label: string; priceSuffix: string, saving: string }>(frequencies[0]);
