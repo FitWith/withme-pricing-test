@@ -19,7 +19,7 @@ export function Cta() {
                 target="_blank"
                 className="rounded-md bg-[#3C55F3] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#3347d1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3C55F3]"
               >
-                Start your journey <span aria-hidden="true">&rarr;</span>
+                Start earning today <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </div>
@@ -35,7 +35,7 @@ export function Cta() {
               <div className="order-first flex w-64 flex-none justify-end self-end lg:w-auto">
                 <img
                   alt="Team collaboration session"
-                  src="https://images.unsplash.com/photo-1605656816944-971cd5c1407f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
+                  src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTE5fHx0ZWFtJTIwd29ya3xlbnwwfHwwfHx8Mg%3D%3D"
                   className="aspect-[4/3] w-[24rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover"
                 />
               </div>
@@ -46,13 +46,13 @@ export function Cta() {
                   className="aspect-[7/5] w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover"
                 />
               </div>
-              <div className="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">
+              {/* <div className="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">
                 <img
                   alt="Team meeting"
                   src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
                   className="aspect-[4/3] w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

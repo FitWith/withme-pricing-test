@@ -259,7 +259,7 @@ function classNames(...classes: string[]): string {
 
 export function SuccessLaunch() {
   return (
-    <div className="bg-white py-8 sm:py-8 mb-8">
+    <div className="bg-white py-8 sm:py-8 mb-8 w-full">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto mt-12 max-w-7xl rounded-3xl ring-1 ring-gray-200 sm:mt-16 lg:mx-0 lg:flex lg:max-w-none items-center lg:pr-3">
           <div className="p-6 sm:p-8 lg:flex-auto">

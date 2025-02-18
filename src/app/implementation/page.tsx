@@ -16,8 +16,8 @@ export default function Implementation() {
         <Hero />
         <Reviews />
         <Features />
-        <Cta />
         <SuccessLaunch />
+        <Cta />
       </main>
       <Footer />
     </>
