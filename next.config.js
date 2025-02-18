@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    formats: ['image/avif', 'image/webp'], // Enable modern image formats
+    domains: ['images.unsplash.com'],
+  },
+}
 
-module.exports = {
-    images: {
-      formats: ['image/avif', 'image/webp'], // Enable modern image formats
-    },
-  };
+module.exports = nextConfig

@@ -5,6 +5,7 @@ import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { getBuyLink, PRODUCT_IDS } from '@/components/Pricing'
 import { Header } from '@/components/Header'
+import Image from 'next/image'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -56,7 +57,7 @@ export function Hero() {
               <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
                 <div className="hidden sm:mb-10 sm:flex">
                   <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                     We've helped 100+ creators{' '}
+                     We&apos;ve helped 100+ creators{' '}
                     <a href="#features" className="whitespace-nowrap font-semibold text-[#3C55F3]">
                       <span className="absolute inset-0" aria-hidden="true" />
                       See how <span aria-hidden="true">&rarr;</span>
@@ -86,10 +87,13 @@ export function Hero() {
           </div>
         </div>
         <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <img
+          <Image
             className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
             src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dGVhbSUyMHdvcmslMjB0ZWNofGVufDB8MXwwfHx8Mg%3D%3D"
-            alt=""
+            alt="Team working together"
+            width={1200}
+            height={800}
+            priority
           />
         </div>
       </div>

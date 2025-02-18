@@ -1,4 +1,5 @@
 import { StarIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
 
 export function Reviews() {
   return (
@@ -15,15 +16,17 @@ export function Reviews() {
           </div>
           <blockquote className="mt-10 text-lg/7 font-semibold tracking-tight text-gray-900 sm:text-xl/8">
             <p>
-              "The implementation specialist was instrumental in helping me launch my online course. Their guidance on pricing, 
-              marketing strategy, and platform setup saved me countless hours and helped me avoid common pitfalls."
+              &ldquo;The implementation specialist was instrumental in helping me launch my online course. Their guidance on pricing, 
+              marketing strategy, and platform setup saved me countless hours and helped me avoid common pitfalls.&rdquo;
             </p>
           </blockquote>
           <figcaption className="mt-10 flex items-center gap-x-6">
-            <img
+            <Image
               alt="Sarah Chen"
               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               className="size-12 rounded-full bg-gray-50"
+              width={48}
+              height={48}
             />
             <div className="text-sm/6">
               <div className="font-semibold text-gray-900">Sarah Chen</div>
@@ -43,15 +46,17 @@ export function Reviews() {
           </div>
           <blockquote className="mt-10 text-lg/7 font-semibold tracking-tight text-gray-900 sm:text-xl/8">
             <p>
-              "Working with the implementation team transformed my business. They helped me structure my community platform 
-              and create engaging content that resonates with my audience. The ROI has been incredible."
+              &ldquo;Working with the implementation team transformed my business. They helped me structure my community platform 
+              and create engaging content that resonates with my audience. The ROI has been incredible.&rdquo;
             </p>
           </blockquote>
           <figcaption className="mt-10 flex items-center gap-x-6">
-            <img
+            <Image
               alt="Marcus Rodriguez"
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               className="size-12 rounded-full bg-gray-50"
+              width={48}
+              height={48}
             />
             <div className="text-sm/6">
               <div className="font-semibold text-gray-900">Marcus Rodriguez</div>

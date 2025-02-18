@@ -4,6 +4,7 @@ import {
   PresentationChartLineIcon, 
   BuildingStorefrontIcon 
 } from '@heroicons/react/20/solid'
+import Image from 'next/image'
 
 const features = [
   {
@@ -58,10 +59,12 @@ export function Features() {
           </div>
           <div className="sm:px-6 lg:px-0">
             <div className="relative isolate shadow-md overflow-hidden max-h-[650px] object-cover image-position-bottom sm:mx-auto sm:max-w-2xl sm:rounded-3xl lg:mx-0 lg:max-w-none">
-              <img
+              <Image
                 alt="Implementation dashboard"
                 src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fHdvcmslMjBmcm9tJTIwaG9tZXxlbnwwfDF8MHx8fDI%3D"
                 className="w-full h-full object-cover rounded-3xl"
+                width={900}
+                height={600}
               />
             </div>
           </div>
