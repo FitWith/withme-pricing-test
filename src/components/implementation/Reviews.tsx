@@ -1,5 +1,8 @@
 import { StarIcon } from '@heroicons/react/20/solid'
+import InstagramIcon from '@/images/insta.png'
 import Image from 'next/image'
+import Gemma from '@/images/gemma.jpg'
+import Olivia from '@/images/olivia.jpg'
 
 export function Reviews() {
   return (
@@ -16,21 +19,28 @@ export function Reviews() {
           </div>
           <blockquote className="mt-10 text-lg/7 font-semibold tracking-tight text-gray-900 sm:text-xl/8">
             <p>
-              &ldquo;The implementation specialist was instrumental in helping me launch my online course. Their guidance on pricing, 
-              marketing strategy, and platform setup saved me countless hours and helped me avoid common pitfalls.&rdquo;
+              &ldquo;WithMe has been a game-changer for my business. Their ongoing mentorship and 1:1 strategy calls helped me 
+              refine my course offerings and pricing strategy. What I love most is how they handle the technical setup and 
+              administrative tasks, letting me focus on creating content and connecting with my community.&rdquo;
             </p>
           </blockquote>
           <figcaption className="mt-10 flex items-center gap-x-6">
             <Image
               alt="Sarah Chen"
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              src={Olivia}
               className="size-12 rounded-full bg-gray-50"
               width={48}
               height={48}
             />
             <div className="text-sm/6">
-              <div className="font-semibold text-gray-900">Sarah Chen</div>
-              <div className="mt-0.5 text-gray-600">Fitness Coach & Course Creator</div>
+              <a href="https://withme.so/livthepositivefoodie" className="group">
+                <div className="font-semibold text-gray-900 group-hover:text-[#3C55F3]">Olivia Mae</div>
+                <div className="mt-0.25 text-gray-600">Health & Weightloss Creator</div>
+                <div className="mt-1 flex items-center gap-x-2 text-gray-600">
+                  <Image src={InstagramIcon} alt="Instagram" className="w-4 h-4" />
+                  <span>285K followers</span>
+                </div>
+              </a>
             </div>
           </figcaption>
         </figure>
@@ -46,21 +56,28 @@ export function Reviews() {
           </div>
           <blockquote className="mt-10 text-lg/7 font-semibold tracking-tight text-gray-900 sm:text-xl/8">
             <p>
-              &ldquo;Working with the implementation team transformed my business. They helped me structure my community platform 
-              and create engaging content that resonates with my audience. The ROI has been incredible.&rdquo;
+              &ldquo;From day one, WithMe provided the support system I needed to succeed. Their team took care of everything - 
+              from setting up my community platform to managing member communications. The regular business coaching has been 
+              invaluable, helping me scale my impact while maintaining work-life balance.&rdquo;
             </p>
           </blockquote>
           <figcaption className="mt-10 flex items-center gap-x-6">
             <Image
               alt="Marcus Rodriguez"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              src={Gemma}
               className="size-12 rounded-full bg-gray-50"
               width={48}
               height={48}
             />
             <div className="text-sm/6">
-              <div className="font-semibold text-gray-900">Marcus Rodriguez</div>
-              <div className="mt-0.5 text-gray-600">Community Builder & Entrepreneur</div>
+              <a href="https://withme.so/gemma" className="group">
+                <div className="font-semibold text-gray-900 group-hover:text-[#3C55F3]">Gemma B</div>
+                <div className="mt-0.25 text-gray-600">Food & Weightloss Creator</div>
+                <div className="mt-1 flex items-center gap-x-2 text-gray-600">
+                <Image src={InstagramIcon} alt="Instagram" className="w-4 h-4" />
+                <span>239K followers</span>
+                </div>
+              </a>
             </div>
           </figcaption>
         </figure>
